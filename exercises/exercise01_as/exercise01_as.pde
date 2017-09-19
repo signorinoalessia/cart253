@@ -1,10 +1,10 @@
-final int CIRCLE_SPEED = 5;                                           //speed of circle
-final color NO_CLICK_FILL_COLOR = color(250, 100, 100);               //default circle color (pink)
-final color CLICK_FILL_COLOR = color(100, 100, 250);                  //color when mouse collision (blue)
-final color BACKGROUND_COLOR = color(250, 150, 150);                  //background color (salmon)
-final color STROKE_COLOR = color(250, 150, 150);                      //circle outline color (light salmon)
-final int CIRCLE_SIZE = 50;                                           //circle size
+final color NO_CLICK_FILL_COLOR = color(250, 100, 100);
+final color CLICK_FILL_COLOR = color(100, 100, 250);
+final color BACKGROUND_COLOR = color(250, 150, 150);
+final color STROKE_COLOR = color(250, 150, 150);
+final int CIRCLE_SIZE = 50;
 
+int CIRCLE_SPEED =10;
 int circleX;                                                          //integer circle X pos
 int circleY;                                                          //integer circle y pos
 int circleVX;                                                         //int circle x velocity
@@ -41,6 +41,13 @@ void draw() {
   }
   if (circleY + currentCircleSize/2 > height || circleY - currentCircleSize/2 < 0) {   //if edge of circle hits screen perimeter y-wise, or other edge, mimics "bounce"
     circleVY = -circleVY;                                                              //flip direction
+  }
+}
+
+void keyPressed() {
+  if (keyCode == UP) {
+    circleX += circleVX;
+    circleX = 0;
   }
 }
 
