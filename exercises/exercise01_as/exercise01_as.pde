@@ -26,13 +26,16 @@ void setup() {
 
 void draw() {
   currentCircleSize--;                                                               //CIRCLE BECOMES SMALLER (AND THEN BIGGER!)
-  
+    
   if (dist(mouseX, mouseY, circleX, circleY) < currentCircleSize/2) {                //if mouse is on circle
     fill(CLICK_FILL_COLOR);                                                          //circle becomes blue 
   }
   else {
     fill(NO_CLICK_FILL_COLOR);                                                       //if not, remain pink
   }
+  
+  mouseLocation();                                                                   //*.*.*CALLING BRAND NEW FUNCTION*.*.*
+    
   ellipse(circleX, circleY, currentCircleSize, currentCircleSize);                    //circle position, circle size
   circleX += circleVX;                                                                // circle x pos increments by 7
   circleY += circleVY;
@@ -44,12 +47,12 @@ void draw() {
   }
 }
 
-void keyPressed() {
-  if (keyCode == UP) {
-    circleX += circleVX;
-    circleX = 0;
+void mouseLocation() {                                                    //*.*.*LOOK AT THIS BRAND NEW FUNCTION, I MADE THIS*.*.*
+  if (mouseX<(width/2) && mouseY<(height/2)) {                            //IF MOUSE IS ON TOP LEFT CORNER OF SCREEN...
+    fill(100,255,77);                                                     //*.*.*.*MAKE CIRCLE AN OBNOXIOIUS SHADE OF GREEN!!!*.*.*
   }
 }
+
 
 void mousePressed() {
   background(BACKGROUND_COLOR);                                            //if mouse is pressed, reset circle animation (paste on background)
