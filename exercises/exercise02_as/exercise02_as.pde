@@ -1,11 +1,11 @@
 color backgroundColor = color(0);
 
-//Global Variables of screen
+//Global Variables of screen static
 
-int numStatic = 1000;
+int numStatic = 50;
 int staticSizeMin = 1;
 int staticSizeMax = 3;
-color staticColor = color(200);
+color staticColor = color(100);
 
 //Global Variables of paddle (size, speed, color)
 
@@ -18,6 +18,7 @@ int paddleHeight = 16;
 color paddleColor = color(255);
 
 //Global Variables of ball (size, speed, color)
+//CHANGE, added a default colour and HIT color
 
 int ballX;
 int ballY;
@@ -25,7 +26,9 @@ int ballVX;
 int ballVY;
 int ballSpeed = 5;
 int ballSize = 16;
-color ballColor = color(255);
+color defaultBallColor = color(255);
+color hitColor = #FA4CC9;
+color ballColor = defaultBallColor;
 
 void setup() {
    //Set the size
@@ -114,14 +117,17 @@ void drawBall() {
   rect(ballX, ballY, ballSize, ballSize);
 }
 
-//Check if ball overlaps 
+//Check if ball overlaps paddle, then bounce up
+//CHANGED BALL COLLISION COLOUR (ball color is now pink)
 void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
     ballY = paddleY - paddleHeight/2 - ballSize/2;
     ballVY = -ballVY;
+    ballColor = hitColor;
   }
 }
 
+// check if edges of ball overlaps paddle, return true, if not false
 boolean ballOverlapsPaddle() {
   if (ballX - ballSize/2 > paddleX - paddleWidth/2 && ballX + ballSize/2 < paddleX + paddleWidth/2) {
     if (ballY > paddleY - paddleHeight/2) {
@@ -131,6 +137,7 @@ boolean ballOverlapsPaddle() {
   return false;
 }
 
+// check if ball hits bottom
 void handleBallOffBottom() {
   if (ballOffBottom()) {
     ballX = width/2;
@@ -138,10 +145,12 @@ void handleBallOffBottom() {
   }
 }
 
+//calculate when ball hits bottom
 boolean ballOffBottom() {
   return (ballY - ballSize/2 > height);
 }
 
+// if ball's edge hits wall, X coordinate reserve velocity, if not fall (gravity)
 void handleBallHitWall() {
   if (ballX - ballSize/2 < 0) {
     ballX = 0 + ballSize/2;
@@ -150,13 +159,16 @@ void handleBallHitWall() {
     ballX = width - ballSize/2;
     ballVX = -ballVX;
   }
-  
+
+//CHANGED BALL COLLISION COLOUR (ball color is now white)  
   if (ballY - ballSize/2 < 0) {
     ballY = 0 + ballSize/2;
     ballVY = -ballVY;
+    ballColor = defaultBallColor;
   }
 }
 
+//keyPressed methods, if LEFT key, then we want x to be negative velocity, same for RIGHT
 void keyPressed() {
   if (keyCode == LEFT) {
     paddleVX = -paddleSpeed;
@@ -165,6 +177,7 @@ void keyPressed() {
   }
 }
 
+//if LEFT/RIGHT key are released, then reverse velocity for paddle
 void keyReleased() {
   if (keyCode == LEFT && paddleVX < 0) {
     paddleVX = 0;
