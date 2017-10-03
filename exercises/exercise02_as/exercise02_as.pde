@@ -25,7 +25,7 @@ int ghostPaddleVX;
 int ghostPaddleSpeed = 6;
 int ghostPaddleWidth = 128;
 int ghostPaddleHeight = 16;
-color ghostPaddleColor = color(80);
+color ghostPaddleColor = color(60);
 
 //Global Variables of ball (size, speed, color)
 //CHANGE, added a default colour and HIT color
@@ -108,23 +108,26 @@ void drawStatic() {
 void updatePaddle() {
   paddleX += paddleVX;  
   paddleX = constrain(paddleX, 0+paddleWidth/2, width-paddleWidth/2);
+  
+  //Calling functions that determine behaviour of collision  
+  handleBallHitPaddle();
+  handleBallHitWall();
+  handleBallOffBottom();
 }
 
 //Update of ball's location based on velocity (so ball moves)
+//ADDED ball Quadrants function (grows)
 void updateBall() {
   ballX += ballVX;
-  ballY += ballVY;
+  ballY += ballVY; 
+  
+  ballQuadrants();
 }
 
 //Update of ghost paddle position
 void updateGhostPaddle() {
   ghostPaddleX += ghostPaddleVX;  
   ghostPaddleX = constrain(ghostPaddleX, 0+ghostPaddleWidth/2, width-ghostPaddleWidth/2);
-
-  //Calling functions that determine behaviour of collision  
-  handleBallHitPaddle();
-  handleBallHitWall();
-  handleBallOffBottom();
 }
 
 //Paddle size, colour and initial position
@@ -178,6 +181,17 @@ void handleBallOffBottom() {
   }
 }
 
+// when ball is in bottom-left quadrant, ball grows and shrinks when in top-right
+void ballQuadrants() {
+  if (ballX > width/2 && ballY > height/2) {
+  constrain(ballSize, 16,30);
+  ballSize++;
+  }
+  if (ballX < width/2 && ballY < height/2) {
+  ballSize--;
+  }
+}
+
 //calculate when ball hits bottom
 boolean ballOffBottom() {
   return (ballY - ballSize/2 > height);
@@ -200,7 +214,6 @@ void handleBallHitWall() {
     ballColor = defaultBallColor;
   }
 }
-
 
 //keyPressed methods, if LEFT key, then we want x to be negative velocity, same for RIGHT
 void keyPressed() {
