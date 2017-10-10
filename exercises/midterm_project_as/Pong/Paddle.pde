@@ -18,17 +18,17 @@ class Paddle {
   int vx;
   int vy;
   
+  //rightMoon = loadImage("https://d30y9cdsu7xlg0.cloudfront.net/png/253275-200.png");
 
   // The fill color of the paddle
   color paddleColor = color(255);
 
   //The score that will go into the collide method (found in ball class)
-  int score = 2;
+  int score = 0;
 
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
   char downKey;
-
 
   /////////////// Constructor ///////////////
 
@@ -37,6 +37,8 @@ class Paddle {
   // Sets the position and controls based on arguments,
   // starts the velocity at 0
 
+  
+  (rightMoon,0 ,0);
   Paddle(int _x, int _y, char _upKey, char _downKey) {
     x = _x;
     y = _y;
@@ -74,15 +76,17 @@ class Paddle {
     rectMode(CENTER);
 
     // Draw the paddle as a rectangle
+    
     rect(x, y, WIDTH, HEIGHT);
 
+    // Display the score in the form of satellites hovering near paddle
     for (int i=0; i < score; i++) {
       rect(x-20, y-HEIGHT/2 + i*10, 5, 5);
-    }
+      rect(x+20, y-HEIGHT/2 + i*10,5,5);
+      }
   }
 
-  // Display the score (in the form of a sphere "hovering" near player)
-
+  // Display the score (in the form of text)
   void displayScore() {
     textSize(100);
     textAlign(CENTER, CENTER);

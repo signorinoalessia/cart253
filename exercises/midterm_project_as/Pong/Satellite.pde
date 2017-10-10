@@ -27,7 +27,6 @@ class Satellite {
   /////////////// Methods ///////////////
   
   void update() {
-    println("SatelliteX[]");
+    println("SatelliteX [0]");
   }
-
 }

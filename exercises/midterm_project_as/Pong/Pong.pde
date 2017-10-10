@@ -12,16 +12,20 @@
 // Global variables for the paddles and the ball
 Paddle leftPaddle;
 Paddle rightPaddle;
+Paddle paddle;
 Ball ball;
-int ball2;
+Satellite satellite;
 
 // The distance from the edge of the window a paddle should be
 int PADDLE_INSET = 8;
 
-// The background colour during play (black)
-color backgroundColor = color(0);
+// The background colour during play (midnight sky)
+color backgroundColor = color(30,0,80);
 
-int score = 4;
+int numStatic = 20;
+int staticSizeMin = 1;
+int staticSizeMax =2;
+color staticColor = color(255,215,200);
 
 // setup()
 //
@@ -37,10 +41,13 @@ void setup() {
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
   leftPaddle = new Paddle(PADDLE_INSET, height/2, 'w', 's');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'l', 'p');
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'p', 'l');
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
+  
+  //new Satellite class
+  satellite = new Satellite();
 }
 
 // draw()
@@ -52,10 +59,13 @@ void draw() {
   // Fill the background each frame so we have animation
   background(backgroundColor);
 
+  drawStatic();
+
   // Update the paddles and ball by calling their update methods
   leftPaddle.update();
   rightPaddle.update();
   ball.update();
+  satellite.update();
 
   // Check if the ball has collided with either paddle
   ball.collide(leftPaddle);
@@ -73,9 +83,19 @@ void draw() {
   ball.display();
 }
 
+void drawStatic() {
+    for (int i = 0; i < numStatic; i++) {
+      float x = random(0,width);
+      float y = random(0,height);
+      float staticSize = random(staticSizeMin, staticSizeMax);
+      fill(staticColor);
+      rect(x,y,staticSize, staticSize);
+    }
+}
+
 //Track if game is over
   void trackGameOver() {
-    if (score > 5) {
+    if (paddle.score > 2) {
       //freeze game****** 
       displayGameOver();
     }
@@ -86,7 +106,7 @@ void draw() {
     //png of winner expands and fills the screen****
     textSize(100);
     textAlign(CENTER, CENTER);
-    text("GAME OVER!",10,30);
+    text("GAME OVER!",100,300);
    }
 
 // keyPressed()
