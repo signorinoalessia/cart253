@@ -49,9 +49,11 @@ class Bouncer {
  //if bouncer is on left side of screen, bounce back
  //x and y stay within boundary of right & left panel
  
+ //CHANGED: when horizontal hitting sides of screen, teleport to center
  void handleBounce() {
    if (x - size/2 < 0 || x + size/2 > width) {
     vx = -vx; 
+    x = width/2;
    }
    
    if (y - size/2 < 0 || y + size/2 > height) {
@@ -62,7 +64,7 @@ class Bouncer {
    y = constrain(y,size/2,height-size/2);
  }
  
- //If mouse is ont bounce trajectory, fill colour switches to hover colour
+ //If mouse is on bounce trajectory, fill colour switches to hover colour
  
  void handleMouse() {
    if (dist(mouseX,mouseY,x,y) < size/2) {
