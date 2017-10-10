@@ -1,6 +1,9 @@
 class Satellite {
   
+  /////////////// Properties ///////////////
   int satellite;
+
+  /////////////// Constructor ///////////////
   
   int[] satelliteX = new int[5];
   int[] satelliteY = new int[5];
@@ -19,7 +22,12 @@ class Satellite {
   satelliteY[3] = 0;
   satelliteY[4] = 0;
   
-    }
+  }
 
+  /////////////// Methods ///////////////
+  
+  void update() {
+    println("SatelliteX[]");
+  }
 
 }
