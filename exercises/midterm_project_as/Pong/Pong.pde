@@ -21,6 +21,7 @@ int PADDLE_INSET = 8;
 // The background colour during play (black)
 color backgroundColor = color(0);
 
+int score = 4;
 
 // setup()
 //
@@ -36,7 +37,7 @@ void setup() {
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
   leftPaddle = new Paddle(PADDLE_INSET, height/2, 'w', 's');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'o', 'l');
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'l', 'p');
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
@@ -71,6 +72,22 @@ void draw() {
   rightPaddle.display();
   ball.display();
 }
+
+//Track if game is over
+  void trackGameOver() {
+    if (score > 5) {
+      //freeze game****** 
+      displayGameOver();
+    }
+  }
+
+//Display message when game is over
+  void displayGameOver() {
+    //png of winner expands and fills the screen****
+    textSize(100);
+    textAlign(CENTER, CENTER);
+    text("GAME OVER!",10,30);
+   }
 
 // keyPressed()
 //

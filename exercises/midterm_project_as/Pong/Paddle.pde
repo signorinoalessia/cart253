@@ -17,12 +17,13 @@ class Paddle {
   int y;
   int vx;
   int vy;
+  
 
   // The fill color of the paddle
   color paddleColor = color(255);
 
-  //The Score that will go into the collide method (found in ball class)
-  int score = 4;
+  //The score that will go into the collide method (found in ball class)
+  int score = 2;
 
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
@@ -31,7 +32,7 @@ class Paddle {
 
   /////////////// Constructor ///////////////
 
-  // Paddle(int _x, int _y, char _upKey, char _downKey)
+  // Paddle(int _x, int _y, int_vy, char _upKey, char _downKey)
   //
   // Sets the position and controls based on arguments,
   // starts the velocity at 0
@@ -56,6 +57,7 @@ class Paddle {
   void update() {
     // Update position with velocity (to move the paddle)
     x += vx;
+    y += vy;
 
     // Constrain the paddle's y position to be in the window
     y = constrain(y, 0 + HEIGHT/2, height - HEIGHT/2);
