@@ -43,6 +43,7 @@ class Bouncer {
    
    handleBounce();
    handleMouse();
+   mouseClicked();
  }
  
  //if bouncer is on right side of screen, bounce back
@@ -74,6 +75,16 @@ class Bouncer {
      fillColor = defaultColor;
    }
  }
+
+//Check if mouse if clicked on it, and makes it move faster
+
+void mouseClicked() {
+  if (dist(mouseX, mouseY,x,y) < size/2) {
+    vx++;
+    vy++;
+  }
+}
+
 
  //draw the bouncer
  
