@@ -17,9 +17,12 @@ class Paddle {
   int y;
   int vx;
   int vy;
-  
+
   // The fill color of the paddle
   color paddleColor = color(255);
+
+  //The Score that will go into the collide method (found in ball class)
+  int score = 4;
 
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
@@ -53,30 +56,42 @@ class Paddle {
   void update() {
     // Update position with velocity (to move the paddle)
     x += vx;
-    y += vy;
 
     // Constrain the paddle's y position to be in the window
-    y = constrain(y,0 + HEIGHT/2,height - HEIGHT/2);
+    y = constrain(y, 0 + HEIGHT/2, height - HEIGHT/2);
   }
 
   // display()
   //
   // Display the paddle at its location
-  
+
   void display() {
     // Set display properties
     noStroke();
     fill(paddleColor);
     rectMode(CENTER);
-    
+
     // Draw the paddle as a rectangle
     rect(x, y, WIDTH, HEIGHT);
+
+    for (int i=0; i < score; i++) {
+      rect(x-20, y-HEIGHT/2 + i*10, 5, 5);
+    }
+  }
+
+  // Display the score (in the form of a sphere "hovering" near player)
+
+  void displayScore() {
+    textSize(100);
+    textAlign(CENTER, CENTER);
+    text("score",x,y);
   }
 
   // keyPressed()
   //
   // Called when keyPressed is called in the main program
-  
+
+
   void keyPressed() {
     // Check if the key is our up key
     if (key == upKey) {

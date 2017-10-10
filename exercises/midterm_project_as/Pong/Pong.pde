@@ -13,6 +13,7 @@
 Paddle leftPaddle;
 Paddle rightPaddle;
 Ball ball;
+int ball2;
 
 // The distance from the edge of the window a paddle should be
 int PADDLE_INSET = 8;
@@ -34,8 +35,8 @@ void setup() {
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, '1', 'q');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, '0', 'p');
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'w', 's');
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'o', 'l');
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
