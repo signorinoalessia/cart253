@@ -1,15 +1,27 @@
 class Bouncer {
   
+ /////////////// Properties ///////////////
+
+ // Default values for position 
  int x;
  int y;
+ 
+ // The velocity of the bouncer 
  int vx;
  int vy;
+
+ // Default value for size  
  int size;
+ 
+ //Colors of bouncer
  color fillColor;
  color defaultColor;
  color hoverColor;
  
- Bouncer(int tempX, int tempY, int tempVX, int tempVY, int tempSize, color tempDefaultColor, color tempHoverColor) {
+ /////////////// Constructor ///////////////
+ 
+ //pass arguments through main program, such as position, speed, color state and size
+  Bouncer(int tempX, int tempY, int tempVX, int tempVY, int tempSize, color tempDefaultColor, color tempHoverColor) {
    x = tempX;
    y = tempY;
    vx = tempVX;
@@ -19,14 +31,23 @@ class Bouncer {
    hoverColor = tempHoverColor;
    fillColor = defaultColor;
  }
+
+ /////////////// Methods /////////////// 
  
- void update() {
+ //update(), called once per frame, makes bouncer move 
+ //and calls methods handleBounce and handleMouse
+ 
+  void update() {
    x += vx;
    y += vy;
    
    handleBounce();
    handleMouse();
  }
+ 
+ //if bouncer is on right side of screen, bounce back
+ //if bouncer is on left side of screen, bounce back
+ //x and y stay within boundary of right & left panel
  
  void handleBounce() {
    if (x - size/2 < 0 || x + size/2 > width) {
@@ -41,6 +62,8 @@ class Bouncer {
    y = constrain(y,size/2,height-size/2);
  }
  
+ //If mouse is ont bounce trajectory, fill colour switches to hover colour
+ 
  void handleMouse() {
    if (dist(mouseX,mouseY,x,y) < size/2) {
     fillColor = hoverColor; 
@@ -49,6 +72,8 @@ class Bouncer {
      fillColor = defaultColor;
    }
  }
+
+ //draw the bouncer
  
  void draw() {
    noStroke();
