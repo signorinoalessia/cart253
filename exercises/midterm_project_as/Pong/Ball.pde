@@ -19,6 +19,11 @@ class Ball {
   int vx;
   int vy;
 
+  //radius and number of points
+  int radius1;
+  int radius2;
+  int npoints;
+   
   // The colour of the ball
   color ballColor = color(255);
 
@@ -34,11 +39,15 @@ class Ball {
   // NOTE that I'm using an underscore in front of the arguments to distinguish
   // them from the class's properties
 
-  Ball(int _x, int _y) {
+  ball(int _x, int _y, int _radius1, int _radius2, int _npoints) {
     x = _x;
     y = _y;
+    radius1 = _radius1;
+    radius2 = _radius2;
+    npoints = _npoints;
     vx = SPEED;
     vy = SPEED;
+    
   }
 
 
@@ -127,6 +136,22 @@ class Ball {
     rectMode(CENTER);
 
     // Draw the ball
-    rect(x, y, SIZE, SIZE);
-  }
+    //rect(x, y, SIZE, SIZE);
+    ball();
+    
+  //Draw the ball as star (credit to Processing reference)
+  void ball(int x, int y, int radius1, int radius2, int npoints) {
+    float angle = TWO_PI / npoints;
+    float halfAngle = angle/2.0;
+    beginShape();
+    for (float a = 0; a < TWO_PI; a += angle) {
+      float sx = x + cos(a) * radius2;
+      float sy = y + sin(a) * radius2;
+      vertex(sx, sy);
+      sx = x + cos(a+halfAngle) * radius1;
+      sy = y + sin(a+halfAngle) * radius1;
+      vertex(sx, sy);
+    }
+    endShape(CLOSE);
+   
 }

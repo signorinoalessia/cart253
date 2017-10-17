@@ -1,13 +1,13 @@
-// Pong
+// Cosmic Pong
 //
-// A simple version of Pong using object-oriented programming.
+// A stellar version of Pong using object-oriented programming.
 // Allows to people to bounce a ball back and forth between
 // two paddles that they control.
 //
-// No scoring. (Yet!)
-// No score display. (Yet!)
-// Pretty ugly. (Now!)
-// Only two paddles. (So far!)
+// Scoring is tracked!
+// Gorgeous score display. 
+// Looks pretty neat.
+// Contains two moon paddles. (Eventually!)
 
 // Global variables for the paddles and the ball
 Paddle leftPaddle;
@@ -22,10 +22,10 @@ int PADDLE_INSET = 8;
 // The background colour during play (midnight sky)
 color backgroundColor = color(30,0,80);
 
-int numStatic = 20;
+int numStatic = 8;
 int staticSizeMin = 1;
 int staticSizeMax =2;
-color staticColor = color(255,215,200);
+color staticColor = color(155,115,220);
 
 // setup()
 //
@@ -46,8 +46,12 @@ void setup() {
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
   
-  //new Satellite class
+  //New Satellite class
   satellite = new Satellite();
+  
+  //delay in milliseconds for displayGameOver
+  wait = 4000;
+  
 }
 
 // draw()
@@ -83,6 +87,7 @@ void draw() {
   ball.display();
 }
 
+//static to mimic stars in the sky
 void drawStatic() {
     for (int i = 0; i < numStatic; i++) {
       float x = random(0,width);
@@ -91,22 +96,32 @@ void drawStatic() {
       fill(staticColor);
       rect(x,y,staticSize, staticSize);
     }
+    
+    //Track if game is over
+    trackGameOver();  
 }
+
+/////////Game Over methods//////////
+
+float stopTime, wait;
 
 //Track if game is over
   void trackGameOver() {
-    if (paddle.score > 2) {
-      //freeze game****** 
-      displayGameOver();
+    //if (paddle.score > 2) {
+      //noLoop(); ***PROBLEM***
     }
-  }
+   
 
 //Display message when game is over
   void displayGameOver() {
-    //png of winner expands and fills the screen****
     textSize(100);
     textAlign(CENTER, CENTER);
     text("GAME OVER!",100,300);
+   }
+
+//Display the winner's paddle filling the screen
+   void winnerPaddle() {
+   //
    }
 
 // keyPressed()

@@ -37,9 +37,7 @@ class Paddle {
   // Sets the position and controls based on arguments,
   // starts the velocity at 0
 
-  
-  (rightMoon,0 ,0);
-  Paddle(int _x, int _y, char _upKey, char _downKey) {
+    Paddle(int _x, int _y, char _upKey, char _downKey) {
     x = _x;
     y = _y;
     vx = 0;
@@ -78,6 +76,10 @@ class Paddle {
     // Draw the paddle as a rectangle
     
     rect(x, y, WIDTH, HEIGHT);
+    
+    // Draw the paddle as a moon
+    
+    
 
     // Display the score in the form of satellites hovering near paddle
     for (int i=0; i < score; i++) {
