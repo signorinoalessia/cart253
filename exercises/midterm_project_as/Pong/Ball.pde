@@ -45,7 +45,7 @@ class Ball {
     radius1 = _radius1;
     radius2 = _radius2;
     npoints = _npoints;
-    vx = SPEED;
+    vx = -SPEED;
     vy = SPEED;
   }
 

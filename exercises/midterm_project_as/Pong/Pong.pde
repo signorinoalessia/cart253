@@ -7,16 +7,15 @@
 // Scoring is tracked!
 // Gorgeous score display. 
 // Looks pretty neat.
-// Contains two moon paddles. (Eventually!)
+// Contains two moon paddles. (Wow!)
 
 // Global variables for the paddles and the ball
 Paddle leftPaddle;
 Paddle rightPaddle;
 Ball ball;
-Satellite satellite;
 
 // The distance from the edge of the window a paddle should be
-int PADDLE_INSET = 35;
+int PADDLE_INSET = 45;
 
 // The background colour during play (midnight sky)
 color backgroundColor = color(30, 0, 80);
@@ -41,14 +40,11 @@ void setup() {
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  leftPaddle = new Paddle(PADDLE_INSET, height/2,"leftMoon.png", 'w', 's');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, "rightMoon.png", 'p', 'l');
+  leftPaddle = new Paddle(PADDLE_INSET, height/2,"leftMoon.png", 'w', 's', true);
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, "rightMoon.png", 'p', 'l', false);
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2, 5, 10, 5);
-
-  //New Satellite class
-  satellite = new Satellite();
 
   //delay in milliseconds for displayGameOver
   wait = 4000;
@@ -69,13 +65,13 @@ void draw() {
 
     //Track if game is over
     trackGameOver(); 
+  
 
     // Update the paddles and ball by calling their update methods
     leftPaddle.update();
     rightPaddle.update();
     ball.update();
-    satellite.update();
-
+    
     // Check if the ball has collided with either paddle
     ball.collide(leftPaddle);
     ball.collide(rightPaddle);
@@ -111,17 +107,18 @@ float stopTime, wait;
 
 //Track if game is over
 void trackGameOver() {
-  if (rightPaddle.score > 1) {
+  if (rightPaddle.score > 4) {
     gameOver = true;
-  } else if (leftPaddle.score > 1) {
+  } else if (leftPaddle.score > 4) {
     gameOver = true;
   }
 }
 
 //Display message when game is over
 void displayGameOver() {
-  textSize(80);
+  textSize(50);
   textAlign(CENTER, CENTER);
+  fill(255);
   text("GAME OVER!", 320, 240);
 }
 

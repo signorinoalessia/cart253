@@ -31,6 +31,14 @@ class Paddle {
   char upKey;
   char downKey;
 
+  //Array of satellites (score)
+
+  int [] satelliteX = new int [5];
+  int [] satelliteY = new int [5];
+
+  //Satellites as stars
+  int satStar;
+
   /////////////// Constructor ///////////////
 
   // Paddle(int _x, int _y, int_vy, char _upKey, char _downKey)
@@ -38,7 +46,7 @@ class Paddle {
   // Sets the position and controls based on arguments,
   // starts the velocity at 0
 
-  Paddle(int _x, int _y, String _image, char _upKey, char _downKey) {
+  Paddle(int _x, int _y, String _image, char _upKey, char _downKey, boolean _isLeftPaddle) {
     x = _x;
     y = _y;
     vx = 0;
@@ -48,6 +56,28 @@ class Paddle {
 
     upKey = _upKey;
     downKey = _downKey;
+
+    if (_isLeftPaddle) {
+
+      satelliteX [0] = 0;
+      satelliteX [1] = -30;
+      satelliteX [2] = -40;
+      satelliteX [3] = -30;
+      satelliteX [4] = 0;
+    } else {
+
+      satelliteX [0] = 0;
+      satelliteX [1] = 30;
+      satelliteX [2] = 40;
+      satelliteX [3] = 30;
+      satelliteX [4] = 0;
+    }
+
+    satelliteY [0] = -45;
+    satelliteY [1] = -30;
+    satelliteY [2] = 0;
+    satelliteY [3] = 35;
+    satelliteY [4] = 50;
   }
 
 
@@ -75,51 +105,44 @@ class Paddle {
     imageMode(CENTER);
     image(imageMoon, x, y);
 
+    fill(255);
 
-    // Display the score in the form of satellites hovering near paddle
+    // Display the score in the form of stars hovering near paddle
     for (int i=0; i < score; i++) {
-      rect(x-20, y-imageMoon.height/2 + i*10, 5, 5);
-      rect(x+20, y-imageMoon.height/2 + i*10, 5, 5);
+      rect(satelliteX[i]+x, satelliteY[i]+y, 5, 5);
+    }
+
+
+    // keyPressed()
+    //
+    // Called when keyPressed is called in the main program
+
+
+    void keyPressed() {
+      // Check if the key is our up key
+      if (key == upKey) {
+        // If so we want a negative y velocity
+        vy = -SPEED;
+      } // Otherwise check if the key is our down key 
+      else if (key == downKey) {
+        // If so we want a positive y velocity
+        vy = SPEED;
+      }
+    }
+
+    // keyReleased()
+    //
+    // Called when keyReleased is called in the main program
+
+    void keyReleased() {
+      // Check if the key is our up key and the paddle is moving up
+      if (key == upKey && vy < 0) {
+        // If so it should stop
+        vy = 0;
+      } // Otherwise check if the key is our down key and paddle is moving down 
+      else if (key == downKey && vy > 0) {
+        // If so it should stop
+        vy = 0;
+      }
     }
   }
-
-  // Display the score (in the form of text)
-  void displayScore() {
-    textSize(100);
-    textAlign(CENTER, CENTER);
-    text("score", x, y);
-  }
-
-  // keyPressed()
-  //
-  // Called when keyPressed is called in the main program
-
-
-  void keyPressed() {
-    // Check if the key is our up key
-    if (key == upKey) {
-      // If so we want a negative y velocity
-      vy = -SPEED;
-    } // Otherwise check if the key is our down key 
-    else if (key == downKey) {
-      // If so we want a positive y velocity
-      vy = SPEED;
-    }
-  }
-
-  // keyReleased()
-  //
-  // Called when keyReleased is called in the main program
-
-  void keyReleased() {
-    // Check if the key is our up key and the paddle is moving up
-    if (key == upKey && vy < 0) {
-      // If so it should stop
-      vy = 0;
-    } // Otherwise check if the key is our down key and paddle is moving down 
-    else if (key == downKey && vy > 0) {
-      // If so it should stop
-      vy = 0;
-    }
-  }
-}
