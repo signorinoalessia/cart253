@@ -25,6 +25,8 @@ int staticSizeMin = 1;
 int staticSizeMax =2;
 color staticColor = color(255, 255, 0);
 
+PImage imageTrophy;
+
 boolean gameOver = false;
 
 // setup()
@@ -48,6 +50,8 @@ void setup() {
 
   //delay in milliseconds for displayGameOver
   wait = 4000;
+  
+  imageTrophy = loadImage("trophy.png");
 }
 
 // draw()
@@ -88,6 +92,7 @@ void draw() {
   leftPaddle.display();
   rightPaddle.display();
   ball.display();
+    
 }
 
 //static to mimic stars in the sky
@@ -124,7 +129,15 @@ void displayGameOver() {
 
 //Display the winner's paddle filling the screen
 void winnerPaddle() {
-  //
+  if (leftPaddle.score > 4) {
+   //Display trophy
+   imageMode(CENTER);
+   image(imageTrophy, 40, 240);
+  } 
+  else if (rightPaddle.score > 4) {
+    imageMode(CENTER);
+    image(imageTrophy, 500, 240);
+  }
 }
 
 // keyPressed()

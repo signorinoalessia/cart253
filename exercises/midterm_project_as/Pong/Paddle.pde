@@ -111,8 +111,8 @@ class Paddle {
     for (int i=0; i < score; i++) {
       rect(satelliteX[i]+x, satelliteY[i]+y, 5, 5);
     }
-
-
+  }
+  
     // keyPressed()
     //
     // Called when keyPressed is called in the main program
