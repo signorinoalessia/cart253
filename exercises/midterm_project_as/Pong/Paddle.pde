@@ -17,8 +17,9 @@ class Paddle {
   int y;
   int vx;
   int vy;
-  
-  //rightMoon = loadImage("https://d30y9cdsu7xlg0.cloudfront.net/png/253275-200.png");
+
+  //Moon images
+  PImage imageMoon;
 
   // The fill color of the paddle
   color paddleColor = color(255);
@@ -37,11 +38,13 @@ class Paddle {
   // Sets the position and controls based on arguments,
   // starts the velocity at 0
 
-    Paddle(int _x, int _y, char _upKey, char _downKey) {
+  Paddle(int _x, int _y, String _image, char _upKey, char _downKey) {
     x = _x;
     y = _y;
     vx = 0;
     vy = 0;
+
+    imageMoon = loadImage(_image);
 
     upKey = _upKey;
     downKey = _downKey;
@@ -60,7 +63,7 @@ class Paddle {
     y += vy;
 
     // Constrain the paddle's y position to be in the window
-    y = constrain(y, 0 + HEIGHT/2, height - HEIGHT/2);
+    y = constrain(y, 0 + imageMoon.height/2, height - imageMoon.width/2);
   }
 
   // display()
@@ -69,30 +72,22 @@ class Paddle {
 
   void display() {
     // Set display properties
-    noStroke();
-    fill(paddleColor);
-    rectMode(CENTER);
+    imageMode(CENTER);
+    image(imageMoon, x, y);
 
-    // Draw the paddle as a rectangle
-    
-    rect(x, y, WIDTH, HEIGHT);
-    
-    // Draw the paddle as a moon
-    
-    
 
     // Display the score in the form of satellites hovering near paddle
     for (int i=0; i < score; i++) {
-      rect(x-20, y-HEIGHT/2 + i*10, 5, 5);
-      rect(x+20, y-HEIGHT/2 + i*10,5,5);
-      }
+      rect(x-20, y-imageMoon.height/2 + i*10, 5, 5);
+      rect(x+20, y-imageMoon.height/2 + i*10, 5, 5);
+    }
   }
 
   // Display the score (in the form of text)
   void displayScore() {
     textSize(100);
     textAlign(CENTER, CENTER);
-    text("score",x,y);
+    text("score", x, y);
   }
 
   // keyPressed()

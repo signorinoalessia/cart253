@@ -12,20 +12,21 @@
 // Global variables for the paddles and the ball
 Paddle leftPaddle;
 Paddle rightPaddle;
-Paddle paddle;
 Ball ball;
 Satellite satellite;
 
 // The distance from the edge of the window a paddle should be
-int PADDLE_INSET = 8;
+int PADDLE_INSET = 35;
 
 // The background colour during play (midnight sky)
-color backgroundColor = color(30,0,80);
+color backgroundColor = color(30, 0, 80);
 
 int numStatic = 8;
 int staticSizeMin = 1;
 int staticSizeMax =2;
-color staticColor = color(155,115,220);
+color staticColor = color(255, 255, 0);
+
+boolean gameOver = false;
 
 // setup()
 //
@@ -40,18 +41,17 @@ void setup() {
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'w', 's');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'p', 'l');
+  leftPaddle = new Paddle(PADDLE_INSET, height/2,"leftMoon.png", 'w', 's');
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, "rightMoon.png", 'p', 'l');
 
   // Create the ball at the centre of the screen
-  ball = new Ball(width/2, height/2);
-  
+  ball = new Ball(width/2, height/2, 5, 10, 5);
+
   //New Satellite class
   satellite = new Satellite();
-  
+
   //delay in milliseconds for displayGameOver
   wait = 4000;
-  
 }
 
 // draw()
@@ -65,22 +65,29 @@ void draw() {
 
   drawStatic();
 
-  // Update the paddles and ball by calling their update methods
-  leftPaddle.update();
-  rightPaddle.update();
-  ball.update();
-  satellite.update();
+  if (!gameOver) {
 
-  // Check if the ball has collided with either paddle
-  ball.collide(leftPaddle);
-  ball.collide(rightPaddle);
+    //Track if game is over
+    trackGameOver(); 
 
-  // Check if the ball has gone off the screen
-  if (ball.isOffScreen()) {
-    // If it has, reset the ball
-    ball.reset();
+    // Update the paddles and ball by calling their update methods
+    leftPaddle.update();
+    rightPaddle.update();
+    ball.update();
+    satellite.update();
+
+    // Check if the ball has collided with either paddle
+    ball.collide(leftPaddle);
+    ball.collide(rightPaddle);
+
+    // Check if the ball has gone off the screen
+    if (ball.isOffScreen()) {
+      // If it has, reset the ball
+      ball.reset();
+    }
+  } else if (gameOver) {
+    displayGameOver();
   }
-
   // Display the paddles and the ball
   leftPaddle.display();
   rightPaddle.display();
@@ -89,16 +96,13 @@ void draw() {
 
 //static to mimic stars in the sky
 void drawStatic() {
-    for (int i = 0; i < numStatic; i++) {
-      float x = random(0,width);
-      float y = random(0,height);
-      float staticSize = random(staticSizeMin, staticSizeMax);
-      fill(staticColor);
-      rect(x,y,staticSize, staticSize);
-    }
-    
-    //Track if game is over
-    trackGameOver();  
+  for (int i = 0; i < numStatic; i++) {
+    float x = random(0, width);
+    float y = random(0, height);
+    float staticSize = random(staticSizeMin, staticSizeMax);
+    fill(staticColor);
+    rect(x, y, staticSize, staticSize);
+  }
 }
 
 /////////Game Over methods//////////
@@ -106,23 +110,25 @@ void drawStatic() {
 float stopTime, wait;
 
 //Track if game is over
-  void trackGameOver() {
-    //if (paddle.score > 2) {
-      //noLoop(); ***PROBLEM***
-    }
-   
+void trackGameOver() {
+  if (rightPaddle.score > 1) {
+    gameOver = true;
+  } else if (leftPaddle.score > 1) {
+    gameOver = true;
+  }
+}
 
 //Display message when game is over
-  void displayGameOver() {
-    textSize(100);
-    textAlign(CENTER, CENTER);
-    text("GAME OVER!",100,300);
-   }
+void displayGameOver() {
+  textSize(80);
+  textAlign(CENTER, CENTER);
+  text("GAME OVER!", 320, 240);
+}
 
 //Display the winner's paddle filling the screen
-   void winnerPaddle() {
-   //
-   }
+void winnerPaddle() {
+  //
+}
 
 // keyPressed()
 //

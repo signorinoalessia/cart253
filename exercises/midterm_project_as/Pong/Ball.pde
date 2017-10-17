@@ -23,7 +23,7 @@ class Ball {
   int radius1;
   int radius2;
   int npoints;
-   
+
   // The colour of the ball
   color ballColor = color(255);
 
@@ -39,7 +39,7 @@ class Ball {
   // NOTE that I'm using an underscore in front of the arguments to distinguish
   // them from the class's properties
 
-  ball(int _x, int _y, int _radius1, int _radius2, int _npoints) {
+  Ball(int _x, int _y, int _radius1, int _radius2, int _npoints) {
     x = _x;
     y = _y;
     radius1 = _radius1;
@@ -47,7 +47,6 @@ class Ball {
     npoints = _npoints;
     vx = SPEED;
     vy = SPEED;
-    
   }
 
 
@@ -70,17 +69,17 @@ class Ball {
       vy = -vy;
     }
   }
-  
+
   // reset()
   //
   // Resets the ball to the centre of the screen.
   // Note that it KEEPS its velocity
-  
+
   void reset() {
     x = width/2;
     y = height/2;
   }
-  
+
   // isOffScreen()
   //
   // Returns true if the ball is off the left or right side of the window
@@ -88,7 +87,7 @@ class Ball {
   // (If we wanted to return WHICH side it had gone off, we'd have to return
   // something like an int (e.g. 0 = not off, 1 = off left, 2 = off right)
   // or a String (e.g. "ON SCREEN", "OFF LEFT", "OFF RIGHT")
-  
+
   boolean isOffScreen() {
     return (x + SIZE/2 < 0 || x - SIZE/2 > width);
   }
@@ -105,7 +104,7 @@ class Ball {
     boolean insideRight = (x - SIZE/2 < paddle.x + paddle.WIDTH/2);
     boolean insideTop = (y + SIZE/2 > paddle.y - paddle.HEIGHT/2);
     boolean insideBottom = (y - SIZE/2 < paddle.y + paddle.HEIGHT/2);
-    
+
     // Check if the ball overlaps with the paddle
     if (insideLeft && insideRight && insideTop && insideBottom) {
       // If it was moving to the left
@@ -118,10 +117,9 @@ class Ball {
       }
       // And make it bounce
       vx = -vx;
-      
+
       //Add score each time ball collides with paddle
       paddle.score += 1;
-      
     }
   }
 
@@ -137,10 +135,11 @@ class Ball {
 
     // Draw the ball
     //rect(x, y, SIZE, SIZE);
-    ball();
-    
+    drawStar(x, y, radius1, radius2, npoints);
+  }
+
   //Draw the ball as star (credit to Processing reference)
-  void ball(int x, int y, int radius1, int radius2, int npoints) {
+  void drawStar(int x, int y, int radius1, int radius2, int npoints) {
     float angle = TWO_PI / npoints;
     float halfAngle = angle/2.0;
     beginShape();
@@ -153,5 +152,5 @@ class Ball {
       vertex(sx, sy);
     }
     endShape(CLOSE);
-   
+  }
 }
