@@ -42,7 +42,7 @@ void setup() {
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  leftPaddle = new Paddle(PADDLE_INSET, height/2,"leftMoon.png", 'w', 's', true);
+  leftPaddle = new Paddle(PADDLE_INSET, height/2,"leftMoon.png", '1', 'q', true);
   rightPaddle = new Paddle(width - PADDLE_INSET, height/2, "rightMoon.png", 'p', 'l', false);
 
   // Create the ball at the centre of the screen

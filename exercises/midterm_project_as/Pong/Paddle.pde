@@ -30,6 +30,10 @@ class Paddle {
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
   char downKey;
+  
+  //Right player will control paddle up and down via mouse (easing)
+  float mouseY;
+  float easing = 0.05;
 
   //Array of satellites (score)
 
@@ -56,7 +60,14 @@ class Paddle {
 
     upKey = _upKey;
     downKey = _downKey;
-
+    
+    if (mouseY != pmouseY || mouseY != pmouseY) {
+    rotAngle = atan2(mouseY - pmouseY, mouseX - pmouseX);
+    }
+    
+    rotate(rotAngle);
+    
+    //Array of position of scoring system
     if (_isLeftPaddle) {
 
       satelliteX [0] = 0;
