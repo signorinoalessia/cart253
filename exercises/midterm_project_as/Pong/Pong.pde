@@ -70,7 +70,6 @@ void draw() {
     //Track if game is over
     trackGameOver(); 
   
-
     // Update the paddles and ball by calling their update methods
     leftPaddle.update();
     rightPaddle.update();
@@ -87,6 +86,7 @@ void draw() {
     }
   } else if (gameOver) {
     displayGameOver();
+    winnerPaddle();
   }
   // Display the paddles and the ball
   leftPaddle.display();
@@ -132,11 +132,11 @@ void winnerPaddle() {
   if (leftPaddle.score > 4) {
    //Display trophy
    imageMode(CENTER);
-   image(imageTrophy, 40, 240);
+   image(imageTrophy, 80, 240);
   } 
   else if (rightPaddle.score > 4) {
     imageMode(CENTER);
-    image(imageTrophy, 500, 240);
+    image(imageTrophy, 560, 240);
   }
 }
 
