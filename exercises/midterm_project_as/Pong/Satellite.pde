@@ -35,14 +35,15 @@ class Satellite {
 
     // Constrain the satellite's y position to be in the window
     y = constrain(y, 0 + imageSat.height/2, height - imageSat.width/2);
+    x = constrain(0 + imageSat.width/2, y, width - imageSat.height/2);
 
     // Check if the satellite is going off the top of bottom
     if (y - SIZE/2 < 0 || y + SIZE/2 > height) {
       // If it is, then make it "bounce" by reversing its velocity
       vy = -vy;
-    } while  (x + SIZE/2 < 0 || x - SIZE/2 > width); 
-    {
-      vx = -vx;
+    } else if (y - SIZE/2 < 0 || y + SIZE/2 > height) {
+      // If it is, then make it "bounce" by reversing its velocity
+      vy = -vy;
     }
   }  
 
