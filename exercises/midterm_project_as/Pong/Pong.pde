@@ -43,7 +43,7 @@ void setup() {
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
   leftPaddle = new Paddle(PADDLE_INSET, height/2,"leftMoon.png", '1', 'q', true);
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, "rightMoon.png", 'p', 'l', false);
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, "rightMoon.png", 'k', 'm', false);
 
   // Create the ball at the centre of the screen
   ball = new Ball(random(width/2), random(height/2), 5, 10, 5);

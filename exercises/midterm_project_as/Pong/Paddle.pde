@@ -60,8 +60,8 @@ class Paddle {
 
     upKey = _upKey;
     downKey = _downKey;
-       
-   
+
+
     //Array of position of scoring system
     if (_isLeftPaddle) {
 
@@ -118,37 +118,49 @@ class Paddle {
       rect(satelliteX[i]+x, satelliteY[i]+y, 5, 5);
     }
   }
+
+  //codedY()
+  //Called in main program
   
-    // keyPressed()
-    //
-    // Called when keyPressed is called in the main program
-
-
-    void keyPressed() {
-      // Check if the key is our up key
-      if (key == upKey) {
-        // If so we want a negative y velocity
-        vy = -SPEED;
-      } // Otherwise check if the key is our down key 
-      else if (key == downKey) {
-        // If so we want a positive y velocity
-        vy = SPEED;
-      }
-    }
-
-    // keyReleased()
-    //
-    // Called when keyReleased is called in the main program
-
-    void keyReleased() {
-      // Check if the key is our up key and the paddle is moving up
-      if (key == upKey && vy < 0) {
-        // If so it should stop
-        vy = 0;
-      } // Otherwise check if the key is our down key and paddle is moving down 
-      else if (key == downKey && vy > 0) {
-        // If so it should stop
-        vy = 0;
-      }
+  void codedY () {
+    if (key == CODED) {
+       if (keyCode == UP) {
+         vy = -SPEED;
+       } else if (keyCode == DOWN) {
+         vy = SPEED;
+       }
     }
   }
+  
+  // keyPressed()
+  //
+  // Called when keyPressed is called in the main program
+
+  void keyPressed() {
+    // Check if the key is our up key
+    if (key == upKey) {
+      // If so we want a negative y velocity
+      vy = -SPEED;
+    } // Otherwise check if the key is our down key 
+    else if (key == downKey) {
+      // If so we want a positive y velocity
+      vy = SPEED;
+    }
+  }
+
+  // keyReleased()
+  //
+  // Called when keyReleased is called in the main program
+
+  void keyReleased() {
+    // Check if the key is our up key and the paddle is moving up
+    if (key == upKey && vy < 0) {
+      // If so it should stop
+      vy = 0;
+    } // Otherwise check if the key is our down key and paddle is moving down 
+    else if (key == downKey && vy > 0) {
+      // If so it should stop
+      vy = 0;
+    }
+  }
+}
