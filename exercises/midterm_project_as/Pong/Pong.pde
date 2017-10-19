@@ -51,7 +51,7 @@ void setup() {
   
   //Creating a satellite, an object that will follow each moon at a slower speed that will bounce back ball
   
-  satellite = new Satellite(random(width/2), random(height/2), 4, 5, "satellite.png");
+  satellite = new Satellite(random(width/2), random(height/2), 4, 4, "satellite.png");
 
   imageTrophy = loadImage("trophy.png");
 }
