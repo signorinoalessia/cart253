@@ -12,8 +12,8 @@ class Ball {
   int SIZE = 16;
 
   // The location of the ball
-  int x;
-  int y;
+  float x;
+  float y;
 
   // The velocity of the ball
   int vx;
@@ -39,7 +39,7 @@ class Ball {
   // NOTE that I'm using an underscore in front of the arguments to distinguish
   // them from the class's properties
 
-  Ball(int _x, int _y, int _radius1, int _radius2, int _npoints) {
+  Ball(float _x, float _y, int _radius1, int _radius2, int _npoints) {
     x = _x;
     y = _y;
     radius1 = _radius1;
@@ -122,22 +122,23 @@ class Ball {
       paddle.score += 1;
     }
   }
+}
 
   // display()
   //
   // Draw the ball at its position
-
+  
   void display() {
     // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
     noStroke();
     fill(ballColor);
     rectMode(CENTER);
-
+  
     // Draw the ball
     //rect(x, y, SIZE, SIZE);
     drawStar(x, y, radius1, radius2, npoints);
   }
-
+  
   //Draw the ball as star (credit to Processing reference)
   void drawStar(int x, int y, int radius1, int radius2, int npoints) {
     float angle = TWO_PI / npoints;

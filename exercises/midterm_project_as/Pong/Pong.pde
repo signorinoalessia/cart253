@@ -46,7 +46,7 @@ void setup() {
   rightPaddle = new Paddle(width - PADDLE_INSET, height/2, "rightMoon.png", 'p', 'l', false);
 
   // Create the ball at the centre of the screen
-  ball = new Ball(width/2, height/2, 5, 10, 5);
+  ball = new Ball((random(width/2)), random(height/2), 5, 10, 5);
 
   //delay in milliseconds for displayGameOver
   wait = 4000;
