@@ -116,7 +116,6 @@ class Ball {
         // Reset its position to align with the left side of the paddle
         x = paddle.x - paddle.WIDTH/2 - SIZE/2;
         background(215);
-
       }
       // And make it bounce
       vx = -vx;
@@ -126,34 +125,34 @@ class Ball {
     }
   }
 
-// display()
-//
-// Draw the ball at its position
+  // display()
+  //
+  // Draw the ball at its position
 
-void display() {
-  // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
-  noStroke();
-  fill(ballColor);
-  rectMode(CENTER);
+  void display() {
+    // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
+    noStroke();
+    fill(ballColor);
+    rectMode(CENTER);
 
-  // Draw the ball
-  //rect(x, y, SIZE, SIZE);
-  drawStar(x, y, radius1, radius2, npoints);
-}
-
-//Draw the ball as star (credit to Processing reference)
-void drawStar(float x, float y, int radius1, int radius2, int npoints) {
-  float angle = TWO_PI / npoints;
-  float halfAngle = angle/2.0;
-  beginShape();
-  for (float a = 0; a < TWO_PI; a += angle) {
-    float sx = x + cos(a) * radius2;
-    float sy = y + sin(a) * radius2;
-    vertex(sx, sy);
-    sx = x + cos(a+halfAngle) * radius1;
-    sy = y + sin(a+halfAngle) * radius1;
-    vertex(sx, sy);
+    // Draw the ball
+    //rect(x, y, SIZE, SIZE);
+    drawStar(x, y, radius1, radius2, npoints);
   }
-  endShape(CLOSE);
-}
+
+  //Draw the ball as star (credit to Processing reference)
+  void drawStar(float x, float y, int radius1, int radius2, int npoints) {
+    float angle = TWO_PI / npoints;
+    float halfAngle = angle/2.0;
+    beginShape();
+    for (float a = 0; a < TWO_PI; a += angle) {
+      float sx = x + cos(a) * radius2;
+      float sy = y + sin(a) * radius2;
+      vertex(sx, sy);
+      sx = x + cos(a+halfAngle) * radius1;
+      sy = y + sin(a+halfAngle) * radius1;
+      vertex(sx, sy);
+    }
+    endShape(CLOSE);
+  }
 }

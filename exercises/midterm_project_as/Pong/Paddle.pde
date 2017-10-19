@@ -30,7 +30,7 @@ class Paddle {
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
   char downKey;
-  
+
   //Right player will control paddle up and down via mouse (easing)
   float mouseY;
   float easing = 0.05;
@@ -45,7 +45,7 @@ class Paddle {
 
   /////////////// Constructor ///////////////
 
-  // Paddle(int _x, int _y, int_vy, char _upKey, char _downKey)
+  // Paddle(int _x, int _y, int_vy, image string, char _upKey, char _downKey)
   //
   // Sets the position and controls based on arguments,
   // starts the velocity at 0
@@ -146,10 +146,10 @@ class Paddle {
     if (key == upKey && vy < 0) {
       // If so it should stop
       vy = 0;
-      } // Otherwise check if the key is our down key and paddle is moving down 
+    } // Otherwise check if the key is our down key and paddle is moving down 
     else if (key == downKey && vy > 0) {
       // If so it should stop
       vy = 0;
-      }
+    }
   }
 }

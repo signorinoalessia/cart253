@@ -13,6 +13,7 @@
 Paddle leftPaddle;
 Paddle rightPaddle;
 Ball ball;
+Satellite satellite;
 
 // The distance from the edge of the window a paddle should be
 int PADDLE_INSET = 45;
@@ -44,9 +45,13 @@ void setup() {
   // different accented characters in text editors (so avoid those if you're changing this)
   leftPaddle = new Paddle(PADDLE_INSET, height/2,"leftMoon.png", '1', 'q', true);
   rightPaddle = new Paddle(width - PADDLE_INSET, height/2, "rightMoon.png", 'k', 'm', false);
-
+  
   // Create the ball at the centre of the screen
   ball = new Ball(random(width/2), random(height/2), 5, 10, 5);
+  
+  //Creating a satellite, an object that will follow each moon at a slower speed that will bounce back ball
+  
+  satellite = new Satellite(random(width/2), random(height/2), 4, 5, "satellite.png");
 
   imageTrophy = loadImage("trophy.png");
 }
@@ -71,10 +76,12 @@ void draw() {
     leftPaddle.update();
     rightPaddle.update();
     ball.update();
+    satellite.update();
     
     // Check if the ball has collided with either paddle
     ball.collide(leftPaddle);
     ball.collide(rightPaddle);
+    //ball.collide(satellite);
 
     // Check if the ball has gone off the screen
     if (ball.isOffScreen()) {
@@ -89,6 +96,7 @@ void draw() {
   leftPaddle.display();
   rightPaddle.display();
   ball.display();
+  satellite.display();
     
 }
 
