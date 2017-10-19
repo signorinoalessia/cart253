@@ -48,9 +48,6 @@ void setup() {
   // Create the ball at the centre of the screen
   ball = new Ball(random(width/2), random(height/2), 5, 10, 5);
 
-  //delay in milliseconds for displayGameOver
-  wait = 4000;
-  
   imageTrophy = loadImage("trophy.png");
 }
 
@@ -107,8 +104,6 @@ void drawStatic() {
 }
 
 /////////Game Over methods//////////
-
-float stopTime, wait;
 
 //Track if game is over
 void trackGameOver() {

@@ -119,19 +119,8 @@ class Paddle {
     }
   }
 
-  //codedY()
-  //Called in main program
-  
-  void codedY () {
-    if (key == CODED) {
-       if (keyCode == UP) {
-         vy = -SPEED;
-       } else if (keyCode == DOWN) {
-         vy = SPEED;
-       }
-    }
-  }
-  
+
+
   // keyPressed()
   //
   // Called when keyPressed is called in the main program
@@ -157,10 +146,10 @@ class Paddle {
     if (key == upKey && vy < 0) {
       // If so it should stop
       vy = 0;
-    } // Otherwise check if the key is our down key and paddle is moving down 
+      } // Otherwise check if the key is our down key and paddle is moving down 
     else if (key == downKey && vy > 0) {
       // If so it should stop
       vy = 0;
-    }
+      }
   }
 }
