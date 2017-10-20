@@ -35,17 +35,21 @@ class Griddie {
   void update() {
     
     // QUESTION: What is this if-statement for?
+    // if energy becomes 0, reset (KILLS the griddie)
     if (energy == 0) {
       return;
     }
     
     // QUESTION: How does the Griddie movement updating work?
+    // Floor calculates the closest int value that is less than 
+    // or equal to the value of parameter
     int xMoveType = floor(random(-1,2));
     int yMoveType = floor(random(-1,2));
     x += size * xMoveType;
     y += size * yMoveType;
     
     // QUESTION: What are these if statements doing?
+    // they make griddies move away from the edges of the screen
     if (x < 0) {
       x += width;
     }
@@ -74,11 +78,14 @@ class Griddie {
   
   void collide(Griddie other) {
     // QUESTION: What is this if-statement for?
+    // if energy is 0 and other griddie's energy are 0, kill off griddies
     if (energy == 0 || other.energy == 0) {
       return;
     }
     
     // QUESTION: What does this if-statement check?
+    // if griddie collides with another griddie, increase griddies's energy 
+    // and constrain it within bounds
     if (x == other.x && y == other.y) {
       // Increase this Griddie's energy
       energy += collideEnergy;
@@ -92,6 +99,7 @@ class Griddie {
   // Draw the Griddie on the screen as a rectangle
   void display() {
     // QUESTION: What does this fill line do?
+    // it fills the griddie with the value of energy it contains
     fill(fill, energy); 
     noStroke();
     rect(x, y, size, size);
