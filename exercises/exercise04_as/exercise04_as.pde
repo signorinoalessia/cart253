@@ -45,8 +45,10 @@ void draw() {
     // Now go through all the griddies a second time...
     for (int j = 0; j < griddies.length; j++) {
       // QUESTION: What is this if-statement for?
+      // if the second time's level of energy not equal the previous one
       if (j != i) {
         // QUESTION: What does this line check?
+        // checks for collision of integers between griddies
         griddies[i].collide(griddies[j]);
       }
     }
