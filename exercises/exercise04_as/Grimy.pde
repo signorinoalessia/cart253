@@ -72,6 +72,15 @@ class Grimy {
     }
   }
 
+//collide with griddie
+  void collideGriddie() {
+    if (x += other.x) {
+    fill(0,255,0);
+    } else if (y += other.y){
+    fill(155,0,155);
+    }
+  }
+
   void display() {
     fill(fill, energy); 
     noStroke();
