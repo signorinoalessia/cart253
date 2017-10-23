@@ -1,6 +1,6 @@
 // Griddies
 // by Pippin Barr
-// MODIFIED BY: 
+// MODIFIED BY: Alessia Signorino
 //
 // A simple artificial life system on a grid. The "griddies" are squares that move
 // around randomly, using energy to do so. They gain energy by overlapping with
@@ -10,6 +10,8 @@
 int gridSize = 20;
 // An array storing all the griddies
 Griddie[] griddies = new Griddie[100];
+// An array storing all the grimies
+Grimy[] grimies = new Grimy[80];
 
 // setup()
 //
@@ -26,6 +28,12 @@ void setup() {
     int x = floor(random(0, width/gridSize));
     int y = floor(random(0, height/gridSize));
     griddies[i] = new Griddie(x * gridSize, y * gridSize, gridSize);
+  }
+  
+  for (int k = 0; k < grimies.length; k++) {
+    int x = floor(random(0, width/gridSize));
+    int y = floor(random(0, height/gridSize));
+    grimies[k] = new Grimy(x * gridSize, y * gridSize, gridSize);
   }
 }
 
@@ -53,7 +61,20 @@ void draw() {
       }
     }
     
+    //looping grimies
+    for (int k = 0; k < griddies.length; k++) {
+      //update the grimies
+      grimies[i].update();
+      for (int m = 0; m < griddies.length; m++) {
+      if (m != k) {
+        grimies[k].collide(grimies[k]);
+      }
+     }
+      
+    }
+    
     // Display the griddies
     griddies[i].display();
+    grimies[k].display();
   }
 }
