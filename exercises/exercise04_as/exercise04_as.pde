@@ -11,7 +11,9 @@ int gridSize = 20;
 // An array storing all the griddies
 Griddie[] griddies = new Griddie[100];
 // An array storing all the grimies
-Grimy[] grimies = new Grimy[80];
+Grimy[] grimies = new Grimy[100];
+
+int a;
 
 // setup()
 //
@@ -30,10 +32,10 @@ void setup() {
     griddies[i] = new Griddie(x * gridSize, y * gridSize, gridSize);
   }
   
-  for (int k = 0; k < grimies.length; k++) {
+  for (int a = 0; a < grimies.length; a++) {
     int x = floor(random(0, width/gridSize));
     int y = floor(random(0, height/gridSize));
-    grimies[k] = new Grimy(x * gridSize, y * gridSize, gridSize);
+    grimies[a] = new Grimy(x * gridSize, y * gridSize, gridSize);
   }
 }
 
@@ -62,12 +64,12 @@ void draw() {
     }
     
     //looping grimies
-    for (int k = 0; k < griddies.length; k++) {
+    for (int a = 0; a < griddies.length; a++) {
       //update the grimies
-      grimies[i].update();
+      grimies[a].update();
       for (int m = 0; m < griddies.length; m++) {
-      if (m != k) {
-        grimies[k].collide(grimies[k]);
+      if (m != a) {
+        grimies[a].collide(grimies[m]);
       }
      }
       
@@ -75,6 +77,6 @@ void draw() {
     
     // Display the griddies
     griddies[i].display();
-    grimies[k].display();
+    grimies[a].display();
   }
 }
