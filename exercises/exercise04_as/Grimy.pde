@@ -76,8 +76,12 @@ class Grimy {
   void collideGriddie() {
     if (x += other.x) {
     fill(0,255,0);
+    delay(300);
+    fill(fill);
     } else if (y += other.y){
     fill(155,0,155);
+    delay(300);
+    fill(fill);
     }
   }
 
