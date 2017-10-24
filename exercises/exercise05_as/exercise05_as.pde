@@ -1,11 +1,10 @@
+//Creature
+//By: Alessia Signorino
+
 //A creature that is trapped within the boundaries of the screen
-//It breathes and moves organically via floats
+//It breathes and moves organically via floats (looks as if it it moves closer and further)
 
-float tx = random(0,100);
-float ty = random(0,100);
-
-float theta = 0;
-float size = 30;
+Creature[] creature = new Creature[5];
 
 void setup() {
   size(500,500);
@@ -14,12 +13,5 @@ void setup() {
 void draw() {
   background(0);
   
-  float x = width * noise(tx);
-  float y = height * noise(ty);
-  float growth = sin(theta) * (size/4);
-  
-  ellipse(x,y,size + growth,size + growth);
-  tx += 0.01;
-  ty += 0.01;
-  theta += 0.05;
+  creature.display();
 }
