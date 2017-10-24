@@ -8,6 +8,7 @@ void setup() {
   fill(255);
 }
 void draw() {
+  background(100);
   float growth = sin(theta) * (size/4);
   ellipse(width/2,height/2,size + growth,size + growth);
   theta += 0.05;
