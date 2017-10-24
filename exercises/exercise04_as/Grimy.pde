@@ -17,6 +17,7 @@ class Grimy {
   int size;
   int energy;
   color fill = color(0, 0, 255);
+  color defaultColor = fill;
 
   // Grimy(tempX, tempY, tempSize)
   //
@@ -72,23 +73,20 @@ class Grimy {
     }
   }
 
-//collide with griddie
-  void collideGriddie() {
-    if (x += other.x) {
-    fill(0,255,0);
-    delay(300);
-    fill(fill);
-    } else if (y += other.y){
-    fill(155,0,155);
-    delay(300);
-    fill(fill);
+  //collide with griddie
+  void collideGriddie(Griddie other) {
+    if (x == other.x) {
+      fill = color(0, 255, 0);
+    } else if (y == other.y) {
+      fill = color(155, 0, 155);
     }
   }
 
   void display() {
     fill(fill, energy); 
     noStroke();
-    ellipseMode(CENTER);
+    ellipseMode(CORNER);
     ellipse(x, y, size, size);
+    fill = defaultColor;
   }
 }    
