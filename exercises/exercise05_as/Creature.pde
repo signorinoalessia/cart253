@@ -10,11 +10,8 @@ class Creature {
   ///// Constructor /////
   // Creature's initial position and size
   
-  Creature(tempX,tempY, tempSize, tempSize2) {
-    x = tempX;
-    y = tempY;
-    size = tempSize;
-    size2 = tempSize2;
+  Creature() {
+
   }
   
   ///// Update /////
