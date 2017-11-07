@@ -59,6 +59,7 @@ class Bouncer {
       vx = -vx;
     }
 
+
     // Check the top and bottom
     if (y - size/2 < 0 || y + size/2 > height) {
       // Bounce on the y-axis
@@ -68,12 +69,12 @@ class Bouncer {
     // Make sure the Bouncer isn't off the edge
     x = constrain(x, size/2, width-size/2);
     y = constrain(y, size/2, height-size/2);
-  }
+   }
 
-   display()
-  
-   Draw an ellipse in the Bouncer's location, with its size
-   and with its fill
+  // display()
+  //
+  // Draw an ellipse in the Bouncer's location, with its size
+  // and with its fill
   void display() {
     noStroke();
     fill(fillColor);
