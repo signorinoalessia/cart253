@@ -57,19 +57,27 @@ class Bouncer {
     if (x - size/2 < 0 || x + size/2 > width) {
       // Bounce on the x-axis
       vx = -vx;
+      //Call toneBounce method
+      toneBounce();
+     
     }
-
 
     // Check the top and bottom
     if (y - size/2 < 0 || y + size/2 > height) {
       // Bounce on the y-axis
       vy = -vy;
+      //Call toneBounce method
+      toneBounce();
     }
 
     // Make sure the Bouncer isn't off the edge
     x = constrain(x, size/2, width-size/2);
     y = constrain(y, size/2, height-size/2);
    }
+
+  void toneBounce()  {
+     
+  }
 
   // display()
   //
