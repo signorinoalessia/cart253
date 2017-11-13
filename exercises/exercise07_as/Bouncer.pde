@@ -57,35 +57,43 @@ class Bouncer {
     if (x - size/2 < 0 || x + size/2 > width) {
       // Bounce on the x-axis
       vx = -vx;
-      //Call toneBounce method
+      //trigger sound
       toneBounce();
-     
     }
 
     // Check the top and bottom
     if (y - size/2 < 0 || y + size/2 > height) {
       // Bounce on the y-axis
       vy = -vy;
-      //Call toneBounce method
+      //trigger sound
       toneBounce();
     }
 
     // Make sure the Bouncer isn't off the edge
     x = constrain(x, size/2, width-size/2);
     y = constrain(y, size/2, height-size/2);
-   }
-
-  void toneBounce()  {
-     
   }
 
-  // display()
-  //
-  // Draw an ellipse in the Bouncer's location, with its size
-  // and with its fill
-  void display() {
-    noStroke();
-    fill(fillColor);
-    ellipse(x, y, size, size);
+  //Position of each bouncer will determine amplitude and frequency
+  void toneBounce() {
+    for (int i=0; i < n.length; i++);  
+    {
+      float amp =  map(_y, 0 _y2, 1, 0);
+      wave.setAmplitude(amp);
+
+      float freq = map(_x, 0, _x2, 110, 880);
+      wave.setFrequency(freq);
+    }
   }
+}
+
+// display()
+//
+// Draw an ellipse in the Bouncer's location, with its size
+// and with its fill
+void display() {
+  noStroke();
+  fill(fillColor);
+  ellipse(x, y, size, size);
+}
 }
