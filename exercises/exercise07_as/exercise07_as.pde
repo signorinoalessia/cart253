@@ -19,10 +19,6 @@ Bouncer[] bouncers = new Bouncer[3];
 
 void setup() {
   size(640, 640);
-  //Init minim
-  //minim = new Minim(this);
-  //out = minim.getLineOut();
-  //wave = new Oscil(440, 0.5f, Waves.SINE );
 
   //Go through the array of frequencies
   for (int i=0; i<frequencies.length; i++) {
