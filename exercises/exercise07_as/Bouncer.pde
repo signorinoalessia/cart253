@@ -79,10 +79,12 @@ class Bouncer {
     for (int i=0; i < n.length; i++);  
     {
       float amp =  map(_y, 0 _y2, 1, 0);
-      wave.setAmplitude(amp);
+      //wave.setAmplitude(amp);
+      saw.play();
 
       float freq = map(_x, 0, _x2, 110, 880);
-      wave.setFrequency(freq);
+      //wave.setFrequency(freq);
+      saw.play();
     }
   }
 }
