@@ -15,7 +15,7 @@ int[] frequencies = new int[60];
 int framesPerBeat = 15;
 
 //An array of future musical bouncers
-Bouncer[] bouncers = new Bouncer[3];
+Bouncer[] bouncers = new Bouncer[5];
 
 void setup() {
   size(640, 640);
@@ -36,6 +36,11 @@ void draw() {
   background(0);
   for (int i=0; i<bouncers.length; i++) {
     bouncers[i].update();
+    for (int j=0; j<bouncers.length; j++) {
+     if (i != j) {
+      bouncers[i].collide(bouncers[j]); 
+     }
+    }
     bouncers[i].display();
   }
 }

@@ -13,8 +13,8 @@ class Bouncer {
   float vx;
   float vy;
 
-  // The bouncer of the Bouncer
-  float bouncer;
+  // The size of the Bouncer
+  float size;
 
   // The current fill colour of the Bouncer
   color fillColor;
@@ -34,12 +34,12 @@ class Bouncer {
   //
   // Creates a Bouncer with the provided values by remembering them.
 
-  Bouncer(float tempX, float tempY, float tempVX, float tempVY, float tempbouncer, color tempDefaultColor, SawOsc tempSaw) {
+  Bouncer(float tempX, float tempY, float tempVX, float tempVY, float tempSize, color tempDefaultColor, SawOsc tempSaw) {
     x = tempX;
     y = tempY;
     vx = tempVX;
     vy = tempVY;
-    bouncer = tempbouncer;
+    size = tempSize;
     defaultColor = tempDefaultColor;
     fillColor = defaultColor;
     saw = tempSaw;
@@ -73,7 +73,7 @@ class Bouncer {
 
   void handleBounce() {
     // Check the left and right
-    if (x - bouncer/2 < 0 || x + bouncer/2 > width) {
+    if (x - size/2 < 0 || x + size/2 > width) {
       // Bounce on the x-axis
       vx = -vx;
       //trigger sound
@@ -81,7 +81,7 @@ class Bouncer {
     }
 
     // Check the top and bottom
-    if (y - bouncer/2 < 0 || y + bouncer/2 > height) {
+    if (y - size/2 < 0 || y + size/2 > height) {
       // Bounce on the y-axis
       vy = -vy;
       //trigger sound
@@ -89,31 +89,32 @@ class Bouncer {
     }
 
     // Make sure the Bouncer isn't off the edge
-    x = constrain(x, bouncer/2, width-bouncer/2);
-    y = constrain(y, bouncer/2, height-bouncer/2);
+    x = constrain(x, size/2, width-size/2);
+    y = constrain(y, size/2, height-size/2);
   }
 
 
   void collide(Bouncer other) {
     
     // Calculate possible overlaps with the bouncer side by side
-    boolean insideLeft = (x + bouncer/2 > bouncers.x - bouncers.size/2);
-    boolean insideRight = (x - bouncer/2 < bouncers.x + bouncers.size/2);
-    boolean insideTop = (y + bouncer/2 > bouncers.y - bouncers.size/2);
-    boolean insideBottom = (y - bouncer/2 < bouncers.y + bouncers.size/2);
+    boolean insideLeft = (x + size/2 > other.x - other.size/2);
+    boolean insideRight = (x - size/2 < other.x + other.size/2);
+    boolean insideTop = (y + size/2 > other.y - other.size/2);
+    boolean insideBottom = (y - size/2 < other.y + other.size/2);
     
     // Check if the bouncer overlaps with the other bouncer
     if (insideLeft && insideRight && insideTop && insideBottom) {
       // If it was moving to the left
       if (vx < 0) {
         // Reset its position to align with the right side
-        x = bouncers.x + bouncers.size/2 + bouncer/2;
+        x = other.x + other.size/2 + size/2;
       } else if (vx > 0) {
         // Reset its position to align with the left side of the bouncer
-        x = bouncers.x - bouncers.size/2 - bouncer/2;
+        x = other.x - other.size/2 - size/2;
       }
       // And make it bounce
       vx = -vx;
+     
       toneBounce();
     }
   }
@@ -131,6 +132,6 @@ class Bouncer {
   void display() {
     noStroke();
     fill(fillColor);
-    ellipse(x, y, bouncer, bouncer);
+    ellipse(x, y, size, size);
   }
 }
