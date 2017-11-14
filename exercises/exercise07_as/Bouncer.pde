@@ -26,7 +26,7 @@ class Bouncer {
   //
   // Creates a Bouncer with the provided values by remembering them.
 
-  Bouncer(float tempX, float tempY, float tempVX, float tempVY, float tempSize, color tempDefaultColor) {
+  Bouncer(float tempX, float tempY, float tempVX, float tempVY, float tempSize, color tempDefaultColor, float minimArray) {
     x = tempX;
     y = tempY;
     vx = tempVX;
