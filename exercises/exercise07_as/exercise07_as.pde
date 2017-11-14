@@ -14,37 +14,32 @@ import processing.sound.*;
 int[] frequencies = new int[60];
 int framesPerBeat = 15;
 
-// Oscillator to play tones
-SawOsc saw;
-
 //An array of future musical bouncers
-Bouncer[] bouncers = new Bouncer[7];
+Bouncer[] bouncers = new Bouncer[3];
 
 void setup() {
-
+  size(640, 640);
   //Init minim
   //minim = new Minim(this);
   //out = minim.getLineOut();
   //wave = new Oscil(440, 0.5f, Waves.SINE );
-  
+
   //Go through the array of frequencies
   for (int i=0; i<frequencies.length; i++) {
     frequencies[i] = 110 + (i*55);
   }
-  
-  saw = new sawOsc(this);
-  saw.freq(110);
-  
+
   //array for loop for bouncers
   for (int i = 0; i < bouncers.length; i++) {
     // Each Bouncer just starts with random values 
-    bouncers[i] = new Bouncer(random(0, width), random(0, height), random(-10, 10), random(-10, 10), random(20, 50), color((255)), minimArray);
+    bouncers[i] = new Bouncer(random(0, width), random(0, height), random(-10, 10), random(-10, 10), random(20, 50), color((255)), new SawOsc(this));
   }
 }
 
 void draw() {
-   
-   bouncer.update();
-   bouncer.display();
-
+  background(0);
+  for (int i=0; i<bouncers.length; i++) {
+    bouncers[i].update();
+    bouncers[i].display();
+  }
 }

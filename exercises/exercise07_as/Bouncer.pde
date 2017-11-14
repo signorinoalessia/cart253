@@ -22,11 +22,19 @@ class Bouncer {
   // The default fill colour of the Bouncer
   color defaultColor;
 
+  //Oscillator 
+  SawOsc saw;
+  
+  //
+  int startTime;
+  int timerDuration = 100;
+  
+
   // Bouncer(tempX,tempY,tempVX,tempVY,tempSize,tempDefaultColor)
   //
   // Creates a Bouncer with the provided values by remembering them.
 
-  Bouncer(float tempX, float tempY, float tempVX, float tempVY, float tempSize, color tempDefaultColor, float minimArray) {
+  Bouncer(float tempX, float tempY, float tempVX, float tempVY, float tempSize, color tempDefaultColor, SawOsc tempSaw) {
     x = tempX;
     y = tempY;
     vx = tempVX;
@@ -34,6 +42,8 @@ class Bouncer {
     size = tempSize;
     defaultColor = tempDefaultColor;
     fillColor = defaultColor;
+    saw = tempSaw;
+    saw.freq(110);
   }
 
   // update()
@@ -43,8 +53,17 @@ class Bouncer {
   void update() {
     x += vx;
     y += vy;
+    
+    //saw.pan(map(x,0,width,-1,1));
+    //saw.freq(map(y,0,height,880,110));
+    //saw.amp(map(x,0,width,1,10));
 
     handleBounce();
+    
+    if (millis() - startTime > timerDuration) {
+      saw.stop();
+      startTime = 0;
+    }
   }
 
   // handleBounce()
@@ -73,21 +92,17 @@ class Bouncer {
     x = constrain(x, size/2, width-size/2);
     y = constrain(y, size/2, height-size/2);
   }
+  
+  
+  void collide(Bouncer other) {
+    toneBounce();
+  }
 
   //Position of each bouncer will determine amplitude and frequency
   void toneBounce() {
-    for (int i=0; i < n.length; i++);  
-    {
-      float amp =  map(_y, 0 _y2, 1, 0);
-      //wave.setAmplitude(amp);
-      saw.play();
-
-      float freq = map(_x, 0, _x2, 110, 880);
-      //wave.setFrequency(freq);
-      saw.play();
-    }
+     startTime = millis();
+     saw.play();    
   }
-}
 
 // display()
 //
