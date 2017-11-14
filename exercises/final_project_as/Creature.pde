@@ -1,4 +1,9 @@
-class Creature {
+// Firefly
+//
+// A class that defines a firefly that "breathes" and moves organically (looks as if it it moves closer and further) 
+// It is constrained by screen size. They collide and move via noise.
+
+class Firefly {
   //Floats for random and consistent movement
   float tx = random(0, 100);
   float ty = random(0, 100);
@@ -14,16 +19,16 @@ class Creature {
   
 
   ///// Constructor /////
-  // Creature's initial position and size
+  // Firefly's initial position and size
 
-  Creature() {
+  Firefly() {
   }
 
   ///// Update /////
   void update() {
   }
 
-  void collide(Creature other) {
+  void collide(Firefly other) {
     //will eventually collide and glow blue
     if (x == other.x && y == other.y) {
       fill(50,50,255);
