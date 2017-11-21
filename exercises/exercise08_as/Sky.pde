@@ -27,7 +27,7 @@ class Sky {
 
   long timePassed =0;
   long startTime =0;
-  int timeExpired =20;
+  int timeExpired =200;
 
   //Is it daytime?
   boolean skyDay = false;
@@ -96,7 +96,7 @@ class Sky {
       currentR1 = lerpColor(r2, r3, interval3);
       currentB1 = lerpColor(b2, b3, interval3);
     }
-    
+
     skyDay();
   }
 

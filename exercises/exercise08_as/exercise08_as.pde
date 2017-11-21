@@ -13,7 +13,7 @@ int y;
 int frogInset = 40;
 
 // Global variables for firefly, frog, score and sky
-Firefly[] fireflies = new Firefly[8];
+Firefly[] fireflies = new Firefly[15];
 Frog frog;
 Sky sky;
 Score score;
@@ -60,7 +60,6 @@ void draw() {
   score.display();
   score.trackGameOver();
 }
-
 
 //Keyboard controls
 void mousePressed() {

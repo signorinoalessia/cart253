@@ -23,6 +23,8 @@ class Frog {
 
   //Tongue frames starts at zero
   int tongueFrames = 0;
+  
+  //Tongue tip
 
   //Characters to move frog left and right
 
@@ -62,12 +64,13 @@ class Frog {
 
   void collide(Firefly firefly) {
     //Calculate possible overlap area of tip of the tongue
-    boolean insideTongue = (imageTongue.y + (firefly.size/2) > imageTongue.y - (imageTongue.height/2));
+    boolean insideTongueX = (firefly.x + (firefly.size/2) > frog.x);
+    boolean insideTongueY = (firefly.y + (firefly.size/2) > frog.y + 1000);
 
     //check if firefly is alive
     if (firefly.alive == true) {
       //check if collision with tongue
-      if (insideTongue) {
+      if (insideTongueX && insideTongueY) {
         //firefly dies
         firefly.alive = false;
       }

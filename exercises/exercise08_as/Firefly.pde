@@ -16,7 +16,7 @@ class Firefly {
   float x;
   float y;
   color fill = color(255);
-  
+
   //alive
   boolean alive = true;
 
@@ -38,9 +38,9 @@ class Firefly {
   //  }
   //}
 
-  
+
   void display() {
-    
+
     if (!alive) {
       return;
     }
@@ -55,7 +55,5 @@ class Firefly {
 
     fill(fill);
     ellipse(x, y, size + growth, size + growth);
-    
-    
   }
 }
