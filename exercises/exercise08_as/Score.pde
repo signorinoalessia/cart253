@@ -62,12 +62,12 @@ class Score {
       textSize(50);
       textAlign(CENTER, CENTER);
       fill(255);
-      text("Yayyy!", 320, 240);
+      text("Yayyy!", width/2, height/2);
     } else if (sky.skyDay == true) {
       textSize(50);
       textAlign(CENTER, CENTER);
       fill(255);
-      text("The sun is up, try again!", 320, 240);
+      text("The sun is up, try again!", width/2, height/2);
       //pause game, replay? Q**
     }
   }

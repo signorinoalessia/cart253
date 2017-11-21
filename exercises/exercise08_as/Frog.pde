@@ -17,10 +17,11 @@ class Frog {
   int vx;
   int vy;
 
-  //Frog placeholder image
+  //Frog and tongue images
   PImage imageFrog;
   PImage imageTongue;
 
+  //Tongue frames starts at zero
   int tongueFrames = 0;
 
   //Characters to move frog left and right
@@ -57,16 +58,20 @@ class Frog {
       tongueFrames--;
     }
     image(imageFrog, x, y);
-
-    //if (tongueisOut) {
-    // image(tongue, x, y); 
-    //}
   }
 
   void collide(Firefly firefly) {
-    //check if firefly is alive;
-    //check if collision with tongue
-    firefly.alive = false;
+    //Calculate possible overlap area of tip of the tongue
+    boolean insideTongue = (imageTongue.y + (firefly.size/2) > imageTongue.y - (imageTongue.height/2));
+
+    //check if firefly is alive
+    if (firefly.alive == true) {
+      //check if collision with tongue
+      if (insideTongue) {
+        //firefly dies
+        firefly.alive = false;
+      }
+    }
   }
 
   void keyPressed()
