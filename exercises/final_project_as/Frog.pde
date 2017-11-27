@@ -64,13 +64,15 @@ class Frog {
 
   void collide(Firefly firefly) {
     //Calculate possible overlap area of tip of the tongue
-    boolean insideTongueX = (firefly.x + (firefly.size/2) > frog.x);
-    boolean insideTongueY = (firefly.y + (firefly.size/2) > frog.y + 1000);
+    boolean insideTongueLeft = (firefly.x + (firefly.size/2) > frog.x -frog.size/2);
+    boolean insideTongueRight = (firefly.x - (firefly.size/2) < frog.x + frog.size/2);
+    boolean insideTongueTop = (firefly.y + (firefly.size/2) > frog.y - frog.size/2);
+    boolean insideTongueBottom = (firefly.y - (firefly.size/2) < frog.y + frog.size/2);
 
     //check if firefly is alive
     if (firefly.alive == true) {
       //check if collision with tongue
-      if (insideTongueX && insideTongueY) {
+      if (insideTongueLeft && insideTongueRight && insideTongueTop && insideTongueBottom) {
         //firefly dies
         firefly.alive = false;
       }
