@@ -11,32 +11,39 @@ class Firefly {
   // Growth and size
   float theta = 0;
   float size = 10;
-  
+
   // Position and colour
   float x;
   float y;
   color fill = color(255);
-  
 
-  ///// Constructor /////
+  //alive
+  boolean alive = true;
+
+
+  //////////// Constructor ////////////
   // Firefly's initial position and size
 
   Firefly() {
   }
 
-  ///// Update /////
+  ///////////// Methods //////////////
   void update() {
   }
 
-  void collide(Firefly other) {
-    //will eventually collide and glow blue
-    if (x == other.x && y == other.y) {
-      fill(50,50,255);
-    }
-  }
+  //void collide(Firefly other) {
+  //  //will eventually collide and glow blue
+  //  if (x == other.x && y == other.y) {
+  //    fill(50, 50, 255);
+  //  }
+  //}
 
-  ///// Display /////
+
   void display() {
+
+    if (!alive) {
+      return;
+    }
 
     float x = width * noise(tx);
     float y = height * noise(ty);
@@ -45,7 +52,7 @@ class Firefly {
     tx += 0.01;
     ty += 0.01;
     theta += 0.05;
-    
+
     fill(fill);
     ellipse(x, y, size + growth, size + growth);
   }
