@@ -65,4 +65,14 @@ class Firefly {
     noFill();
     rect(x,y,size,size);
   }
+  
+  void reset() {
+    tx = random(0, 100);
+    ty = random(0, 100);
+    theta = 0;
+    
+    size = 10;
+    alive = true;
+    
+  }
 }

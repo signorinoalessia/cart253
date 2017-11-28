@@ -77,6 +77,8 @@ class Score {
     textSize(50);
     textAlign(CENTER, CENTER);
     text("Press R to play again", width/2, height);
+    
+    println("Play Again");
 
     if (keyPressed) {
       if (key == 'r' || key == 'R') {
@@ -86,20 +88,20 @@ class Score {
   }
 
   void reset() {
+    //reset score
+    
+    score  = 0;
+    currentText = -1;
+    
     //Display sky
-    sky.display();
-
-    //Display and update frog
-    frog.update();
-    frog.display();
-
+    sky.reset();
+  
     //display fireflies
-    for (int i=0; i < fireflies.length; i++) {
-      frog.collide(fireflies[i]);
-      fireflies[i].display();
-      fireflies[i].update();
-    }
+      for (int i=0; i < fireflies.length; i++) {
+        fireflies[i].reset();
+      }
   }
-}
+
 
   //https://forum.processing.org/two/discussion/726/how-to-restart-this-game
+}

@@ -32,7 +32,7 @@ class Sky {
   // Timer variables
   long timePassed =0;
   long startTime =0;
-  int timeExpired =200;
+  int timeExpired =20;
 
   // Is it daytime?
   boolean skyDay = false;
@@ -66,7 +66,7 @@ class Sky {
       stroke(interA);
       line(0, i, 1920, i);
     }
-    
+
     // timer determined by current time minus the start time
     timePassed = millis()-startTime;
 
@@ -78,13 +78,13 @@ class Sky {
         timePassed =0;
         startTime =millis();
       }
-      
+
       //Run lerp from first set of color, during set interval
       currentR1 = lerpColor(r0, r1, interval);
       currentB1 = lerpColor(b0, b1, interval);
     } else if (interval2 < 1)
     {
-       //if the time passed has expired, then proceed to following colorLerp
+      //if the time passed has expired, then proceed to following colorLerp
       if (timePassed>timeExpired)
       {
         interval2 = interval2+0.01;
@@ -109,11 +109,28 @@ class Sky {
     // See method below
     skyDay();
   }
-  
+
   // Method to determine is the sky lerpcolor has fnished and is thus at the brightest point of day
   void skyDay() {
     if (currentR1 == r3) {
       skyDay = true;
     }
+  }
+  
+  void reset() {
+      // interval variables that will determine begin time and colours
+  currentR1 = r1;
+  currentB1 = b1;
+  interval=0;
+  interval2=0;
+  interval3=0;
+
+  // Timer variables
+  timePassed =0;
+  startTime =0;
+  timeExpired =20;
+
+  // Is it daytime?
+  skyDay = false;
   }
 }
