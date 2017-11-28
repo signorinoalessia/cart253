@@ -30,9 +30,15 @@ Frog frog;
 Sky sky;
 Score score;
 
+//Background
+PImage imagePlants;
+
 void setup() {
   size(1920, 1080);
   frameRate(50);
+  
+  //Background image for plants
+  imagePlants = loadImage("ricefield.png");
   
   //video capture initialized
   cam = new Capture(this);
@@ -57,9 +63,13 @@ void setup() {
   score = new Score(width/2, height/4);
 }
 
+
 void draw() {
   background(0);
 
+  //Plants in background
+  image(imagePlants, 0, 0);
+  
   //Test cam
   image(cam,0,0);
   
