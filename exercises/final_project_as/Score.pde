@@ -2,6 +2,7 @@
 //
 // A class that keeps track of score and display if the game is over or won
 
+
 class Score {
 
   int x;
@@ -12,8 +13,11 @@ class Score {
 
   int currentText = -1;
 
+  
   String[] texts = {
-    //textAlign(CENTER);
+   //textAlign(CENTER);
+   //textSize(25)
+   
     "Did you know? There are over 5'000 species of frog", 
     "A frog's call is unique to its species, and some frog calls can be heard up to a mile away.", 
     "I was walking under the moonlit dirt path with Filomena and Ercole and we heard faint guttural croaks coming from the waters.", 
@@ -24,6 +28,7 @@ class Score {
     "The ringlets were proof that somewhere near me a frog was probably gazing back to me, having been disturbed from their chorus practice.", 
     "The biggest frog in the world is the Goliath frog. It lives in West Africa and can measure more than 30cm in length and weigh more than 3.5kg.", 
     "And then, there it was, slimy and smooth, a creature smaller than my eight year old palm, its chin swelling and shrinking, defying the silence with new croaks."
+  
   };
 
 
@@ -101,7 +106,4 @@ class Score {
         fireflies[i].reset();
       }
   }
-
-
-  //https://forum.processing.org/two/discussion/726/how-to-restart-this-game
 }

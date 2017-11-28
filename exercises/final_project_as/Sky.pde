@@ -32,7 +32,7 @@ class Sky {
   // Timer variables
   long timePassed =0;
   long startTime =0;
-  int timeExpired =20;
+  int timeExpired =200;
 
   // Is it daytime?
   boolean skyDay = false;

@@ -1,11 +1,11 @@
-/* Things to fix: (1)camera tracking detection (see audio above certain lvl or rgb det), (3)replay option, (4)add firefly orbs around frog instead
- Things to add aesthetically: plants visible, cricket sounds, change sky a bit more pastel*/
+/* Things to fix: (1)Make frog jump (2)add firefly orbs around frog instead (3) plants visible
+ Things to add aesthetically: add cricket sounds, change sky a bit more pastel*/
 
 //A Frog in the Rice Field
 //By: Alessia Signorino
 
 // Become a frog in a rice field and catch as many fireflies as you can before sunrise!
-// You can move on x axis with mouse and you can jump with webcam (eventually) ****
+// You can move on x axis with mouse and you can jump with webcam (eventually)****
 // The fireflies breathe and move organically (looks as if it it moves closer and further)
 // Your score is tracked and shown as lit orbs (you did eat fireflies after all) *****
 // Stream of consciousness will display fun frog facts and childhood memories as text strings
@@ -51,7 +51,7 @@ void setup() {
 
   //Create a frog at the bottom of the screen
   frog = new Frog(width-frogInset, 0, "frog.png", "tongue.png", 10);
-  frog.y = height - frog.imageFrog.height-60;
+  frog.y = height - frog.imageFrog.height-30;
 
   //Create score class
   score = new Score(width/2, height/4);
@@ -61,16 +61,16 @@ void setup() {
 void draw() {
   //background(0);
 
+  // Frog RGB Input
+  frog.frogInput();
+  
+  //Display sky
+  sky.display();
+  
   //Plants in background
   imageMode(CENTER);
   image(imagePlants, 0, 0);
   
-  // Frog RGB Input
-  frog.frogInput();
-  
-  
-  //Display sky
-  sky.display();
 
   //Display and update frog
   frog.update();
