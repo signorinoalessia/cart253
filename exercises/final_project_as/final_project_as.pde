@@ -1,6 +1,6 @@
-/* Things to fix: (1)camera tracking detection, (2)replay option, 
-(3)making fireflies get eaten upon collision!!!!, (4)add firefly orbs around frog instead
-Things to add aesthetically: rice shoots, cricket sounds, change sky a bit more pastel*/
+/* Things to fix: (1)camera tracking detection (see audio above certain lvl or rgb det), (2)making fireflies get eaten upon collision(!!), 
+ (3)replay option, (4)add firefly orbs around frog instead
+ Things to add aesthetically: cricket sounds, change sky a bit more pastel*/
 
 //A Frog in the Rice Field
 //By: Alessia Signorino
@@ -14,11 +14,11 @@ Things to add aesthetically: rice shoots, cricket sounds, change sky a bit more 
 
 //Video library and Webcam object
 import processing.video.*;
-Capture.cam;
+Capture cam;
 
-float threshold = 100;
+float threshold = 50;
 int Cx = 0;
-int Cy 0;
+int Cy = 0;
 
 int x;
 int y;
@@ -33,17 +33,19 @@ Score score;
 //Background
 PImage imagePlants;
 
+PImage prevFrame;
+
 void setup() {
   size(1920, 1080);
   frameRate(50);
-  
+
   //Background image for plants
   imagePlants = loadImage("ricefield.png");
-  
+
   //video capture initialized
-  cam = new Capture(this);
+  cam = new Capture(this,320,240);
   cam.start();
-  prevFrame = createImage(video.width, video.height, RGB);
+  prevFrame = createImage(cam.width, cam.height, RGB);
 
   ///ADD FONT 
 
@@ -69,29 +71,56 @@ void draw() {
 
   //Plants in background
   image(imagePlants, 0, 0);
-  
+
   //Test cam
-  image(cam,0,0);
-  
+  image(cam, 0, 0);
+
   //If video is available and previous frame does not match current frame
   //Ref: https://forum.processing.org/two/discussion/4507/motion-detection
-  if (video.available()) {
-    prevFrame.copy(video,0,0,video.width,video.height. 0, 0, video.width, video.height); 
+  if (cam.available()) {
+    prevFrame.copy(cam, 0, 0, cam.width, cam.height, 0, 0, cam.width, cam.height); 
     prevFrame.updatePixels();
-    video.read();
+    cam.read();
   }
   
+  
+  float sumX = 0;
+  float sumY = 0;
+  float totalMovement = 0;
+  
   // ??? Help
-  for (int x = 0; x < video.width; x ++ ) {
-    for (int y = 0; y < video.height; y ++ ) {
- 
-      int loc = x + y*video.width;            
-      color current = video.pixels[loc];      
+  for (int x = 0; x < cam.width; x ++ ) {
+    for (int y = 0; y < cam.height; y ++ ) {
+
+      int loc = x + y*cam.width;            
+      color current = cam.pixels[loc];      
       color previous = prevFrame.pixels[loc]; 
-    
-      if (diff > threshold) {
-         frog.tongueFrames = 2;
+
+      float r1 = red(current); 
+      float g1 = green(current); 
+      float b1 = blue(current);
+      float r2 = red(previous); 
+      float g2 = green(previous); 
+      float b2 = blue(previous);
+
+      float diff = dist(r1, g1, b1, r2, g2, b2);
+
+      if (diff > threshold) { 
+        sumX += x;
+        sumY += y;
+        totalMovement++;
       }
+    }
+  }
+  
+  //
+  float averageX = 0;
+  float averageY = 0;
+  
+  if (totalMovement != 0) {
+    averageX = (sumX/totalMovement);
+    averageY = (sumY/totalMovement);
+  }
 
   //Display sky
   sky.display();
@@ -100,6 +129,11 @@ void draw() {
   frog.update();
   frog.display();
   
+
+  image(cam,cam.width/2,cam.height/2);
+  ellipse(averageX,averageY, 50, 50);
+    //ellipse((averageX/cam.width) * width,(averageY/cam.height) * height, 50, 50);
+    
   //display fireflies
   for (int i=0; i < fireflies.length; i++) {
     frog.collide(fireflies[i]);
@@ -113,7 +147,7 @@ void draw() {
 }
 
 // webcam capture event method
-void captureEvent(Captre c) {
+void captureEvent(Capture c) {
   c.read();
 }
 

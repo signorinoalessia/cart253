@@ -77,27 +77,29 @@ class Score {
     textSize(50);
     textAlign(CENTER, CENTER);
     text("Press R to play again", width/2, height);
-    
-    if(keyPressed) {
+
+    if (keyPressed) {
       if (key == 'r' || key == 'R') {
         reset();
+      }
     }
   }
-  
+
   void reset() {
     //Display sky
     sky.display();
-  
+
     //Display and update frog
     frog.update();
     frog.display();
-    
+
     //display fireflies
     for (int i=0; i < fireflies.length; i++) {
       frog.collide(fireflies[i]);
       fireflies[i].display();
       fireflies[i].update();
+    }
   }
 }
 
-//https://forum.processing.org/two/discussion/726/how-to-restart-this-game
+  //https://forum.processing.org/two/discussion/726/how-to-restart-this-game
