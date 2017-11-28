@@ -8,6 +8,10 @@
 // Stream of consciousness will display fun frog facts and childhood memories as text strings
 // The background changes gradually from night to sunrise, making the fireflies harder to see
 
+//Video library and Webcam object
+import processing.video.*;
+Capture.cam;
+
 int x;
 int y;
 int frogInset = 40;
@@ -21,6 +25,10 @@ Score score;
 void setup() {
   size(1920, 1080);
   frameRate(50);
+  
+  //video capture initialized
+  cam = new Capture(this);
+  cam.start();
 
   ///ADD FONT 
 
@@ -42,6 +50,9 @@ void setup() {
 
 void draw() {
   background(0);
+  
+  //Test cam
+  image(cam,0,0);
 
   //Display sky
   sky.display();
@@ -60,6 +71,11 @@ void draw() {
   //Display and track game over methods
   score.display();
   score.trackGameOver();
+}
+
+// webcam capture event method
+void captureEvent(Captre c) {
+  c.read();
 }
 
 //Keyboard controls
