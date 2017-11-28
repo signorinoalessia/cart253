@@ -1,3 +1,7 @@
+/* Things to fix: (1)camera tracking detection, (2)replay option, 
+(3)making fireflies get eaten upon collision!!!!, (4)add firefly orbs around frog instead
+Things to add aesthetically: rice shoots, cricket sounds, change sky a bit more pastel*/
+
 //A Frog in the Rice Field
 //By: Alessia Signorino
 
