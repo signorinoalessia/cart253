@@ -4,13 +4,17 @@
 // Become a frog in a rice field and catch as many fireflies as you can before sunrise!
 // You can move on x axis with mouse and you can jump with webcam (eventually) ****
 // The fireflies breathe and move organically (looks as if it it moves closer and further)
-// Your score is tracked and shown as lit orbs (you did eat fireflies after all)
+// Your score is tracked and shown as lit orbs (you did eat fireflies after all) *****
 // Stream of consciousness will display fun frog facts and childhood memories as text strings
 // The background changes gradually from night to sunrise, making the fireflies harder to see
 
 //Video library and Webcam object
 import processing.video.*;
 Capture.cam;
+
+float threshold = 100;
+int Cx = 0;
+int Cy 0;
 
 int x;
 int y;
@@ -29,6 +33,7 @@ void setup() {
   //video capture initialized
   cam = new Capture(this);
   cam.start();
+  prevFrame = createImage(video.width, video.height, RGB);
 
   ///ADD FONT 
 
@@ -50,9 +55,29 @@ void setup() {
 
 void draw() {
   background(0);
-  
+
   //Test cam
   image(cam,0,0);
+  
+  //If video is available and previous frame does not match current frame
+  //Ref: https://forum.processing.org/two/discussion/4507/motion-detection
+  if (video.available()) {
+    prevFrame.copy(video,0,0,video.width,video.height. 0, 0, video.width, video.height); 
+    prevFrame.updatePixels();
+    video.read();
+  }
+  
+  // ??? Help
+  for (int x = 0; x < video.width; x ++ ) {
+    for (int y = 0; y < video.height; y ++ ) {
+ 
+      int loc = x + y*video.width;            
+      color current = video.pixels[loc];      
+      color previous = prevFrame.pixels[loc]; 
+    
+      if (diff > threshold) {
+         frog.tongueFrames = 2;
+      }
 
   //Display sky
   sky.display();
