@@ -29,14 +29,19 @@ class Firefly {
 
   ///////////// Methods //////////////
   void update() {
+    
+    if (alive == false); {
+      return;
+    }
+     
   }
 
-  //void collide(Firefly other) {
-  //  //will eventually collide and glow blue
-  //  if (x == other.x && y == other.y) {
-  //    fill(50, 50, 255);
-  //  }
-  //}
+  void collide(Firefly other) {
+    //will eventually collide and glow blue
+    if (x == other.x && y == other.y) {
+      fill(50, 50, 255);
+    }
+  }
 
 
   void display() {

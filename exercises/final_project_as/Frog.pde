@@ -56,11 +56,11 @@ class Frog {
   void display() {
     imageMode(CENTER);
     if (tongueFrames > 0) {
-      image(imageTongue, x, y - 100);
+      image(imageTongue, x, y-100);
       tongueFrames--;
     }
     image(imageFrog, x, y);
-  }
+    }
 
   void collide(Firefly firefly) {
     //Calculate possible overlap area of tip of the tongue
