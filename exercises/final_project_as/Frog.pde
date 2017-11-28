@@ -57,17 +57,32 @@ class Frog {
     imageMode(CENTER);
     if (tongueFrames > 0) {
       image(imageTongue, x, y-100);
+      rectMode(CENTER);
+      stroke(255,0,0);
+      noFill();
+      rect(x,y-100,imageTongue.width,imageTongue.height);
       tongueFrames--;
     }
     image(imageFrog, x, y);
+    
+    
     }
 
   void collide(Firefly firefly) {
+
     //Calculate possible overlap area of tip of the tongue
-    boolean insideTongueLeft = (firefly.x + (firefly.size/2) > x -imageTongue.width/2);
+    boolean insideTongueLeft = (firefly.x + (firefly.size/2) > x - imageTongue.width/2);
     boolean insideTongueRight = (firefly.x - (firefly.size/2) < x + imageTongue.width/2);
-    boolean insideTongueTop = (firefly.y + (firefly.size/2) > y-100 - imageTongue.height/2);
-    boolean insideTongueBottom = (firefly.y - (firefly.size/2) < y-100 + imageTongue.height/2);
+    boolean insideTongueTop = (firefly.y + (firefly.size/2) > y - 100 - imageTongue.height/2);
+    boolean insideTongueBottom = (firefly.y - (firefly.size/2) < y - 100 + imageTongue.height/2);
+
+//    boolean insideTongueLeft = (firefly.x  > x - imageTongue.width/2);
+//    boolean insideTongueRight = (firefly.x < x + imageTongue.width/2);
+//    boolean insideTongueTop = (firefly.y > y - 100 - imageTongue.height/2);
+//    boolean insideTongueBottom = (firefly.y < y - 100 + imageTongue.height/2);
+
+  println(firefly.x);
+  println(x - imageTongue.width/2, x + imageTongue.width/2);
 
     //check if firefly is alive
     if (firefly.alive == true) {
@@ -88,8 +103,8 @@ class Frog {
       } else if (keyCode == RIGHT) {
         vx = speed;
       } else if (keyCode == UP) {
-        println("Hello!");
-        tongueFrames = 2;
+        //println("Hello!");
+        tongueFrames = 200;
       }
     }
   }

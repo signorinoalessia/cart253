@@ -1,5 +1,4 @@
-/* Things to fix: (1)camera tracking detection (see audio above certain lvl or rgb det), (2)making fireflies get eaten upon collision(!!), 
- (3)replay option, (4)add firefly orbs around frog instead
+/* Things to fix: (1)camera tracking detection (see audio above certain lvl or rgb det), (3)replay option, (4)add firefly orbs around frog instead
  Things to add aesthetically: cricket sounds, change sky a bit more pastel*/
 
 //A Frog in the Rice Field

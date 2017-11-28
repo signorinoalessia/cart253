@@ -50,8 +50,8 @@ class Firefly {
       return;
     }
 
-    float x = width * noise(tx);
-    float y = height * noise(ty);
+    x = width * noise(tx);
+    y = height * noise(ty);
     float growth = sin(theta) * (size/4);
 
     tx += 0.01;
@@ -60,5 +60,9 @@ class Firefly {
 
     fill(fill);
     ellipse(x, y, size + growth, size + growth);
+    rectMode(CENTER);
+    stroke(255,0,0);
+    noFill();
+    rect(x,y,size,size);
   }
 }
