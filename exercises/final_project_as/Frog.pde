@@ -1,13 +1,13 @@
 //Frog
 //
 // A class that defines the frog as being able to move on x axis with keyboard 
-// and jump with webcam edge detection (eventually)
+// and jumps whenever the webcam detects blue!
 
 class Frog {
 
   /////////// Properties ///////////
 
-  //default values for speed and size
+  //Default values for speed and size
   int speed;
   int size = 50;
 
@@ -24,9 +24,8 @@ class Frog {
   //Tongue frames starts at zero
   int tongueFrames = 0;
 
-  //Tongue tip
-
-  //Characters to move frog left and right
+  //Is the frog jumping?
+  boolean isJumping =false;
 
 
   ////////// Constructor ////////////
@@ -56,7 +55,7 @@ class Frog {
   void display() {
     imageMode(CENTER);
     if (tongueFrames > 0) {
-      image(imageTongue, x, y-20);
+      image(imageTongue, x, y-imageFrog.height);
       rectMode(CENTER);
       //stroke(255, 0, 0);
       //noFill();
@@ -71,30 +70,55 @@ class Frog {
     if (video.available()) {
       video.read();
     } 
-    int reddestX = 0;
-    int reddestY = 0;
-    float record = 1000;
+    int bluestX = 0;
+    int bluestY = 0;
+    float record = 500;
+
 
     for ( int x = 0; x < video.width; x++ ) {
       for ( int y = 0; y < video.height; y++ ) {
         int loc = x + (y * video.width);
         color pixelColor = video.pixels[loc];
-        float amount = dist(255, 0, 0, red(pixelColor), green(pixelColor), blue(pixelColor));
+        float amount = dist(0, 0, 255, red(pixelColor), green(pixelColor), blue(pixelColor));
+
+
         if (amount < record) {
+          // println(amount);
           record = amount;
-          reddestX = x;
-          reddestY = y;
+          bluestX = x;
+          bluestY = y;
         }
       }
-     
-      fill(255, 0, 0);
-      image(video, 0, 0);
-      ellipse(reddestX, reddestY, 10, 10);
     }
+
+    fill(255, 0, 0);
+    image(video, 0, 0);
+    ellipse(bluestX, bluestY, 10, 10);
+
     println(record);
-    if (record>150) {
-    tongueFrames = 1;
+    println(isJumping);
+    if (isJumping ==true)
+    {
+      vy+=1;
+      if (y>height-60)
+      {
+        vy=0;
+        isJumping =false;
+      }
+    } else if (record<120) {
+      println("trigger");
+      tongueFrames = 1;
+      if (isJumping ==false)
+      {
+        println("jump");
+        vy =-17;
+        isJumping =true;
+      }
+    } else {
+      println("no trigger");
     }
+
+    y+=vy;
   }
 
   void collide(Firefly firefly) {
@@ -105,16 +129,10 @@ class Frog {
     boolean insideTongueTop = (firefly.y + (firefly.size/2) > y - 50 - imageTongue.height/2);
     boolean insideTongueBottom = (firefly.y - (firefly.size/2) < y - 50 + imageTongue.height/2);
 
-    //    boolean insideTongueLeft = (firefly.x  > x - imageTongue.width/2);
-    //    boolean insideTongueRight = (firefly.x < x + imageTongue.width/2);
-    //    boolean insideTongueTop = (firefly.y > y - 100 - imageTongue.height/2);
-    //    boolean insideTongueBottom = (firefly.y < y - 100 + imageTongue.height/2);
-
     //check if firefly is alive
     if (firefly.alive == true) {
       //check if collision with tongue
       if (insideTongueLeft && insideTongueRight && insideTongueTop && insideTongueBottom) {
-        // println("eaten");
         //firefly dies
         firefly.alive = false;
       }

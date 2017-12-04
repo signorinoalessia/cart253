@@ -29,11 +29,11 @@ class Firefly {
 
   ///////////// Methods //////////////
   void update() {
-    
-    if (alive == false); {
+
+    if (alive == false); 
+    {
       return;
     }
-     
   }
 
   void collide(Firefly other) {
@@ -60,19 +60,14 @@ class Firefly {
 
     fill(fill);
     ellipse(x, y, size + growth, size + growth);
-    rectMode(CENTER);
-    stroke(255,0,0);
-    noFill();
-    rect(x,y,size,size);
   }
-  
+
   void reset() {
     tx = random(0, 100);
     ty = random(0, 100);
     theta = 0;
-    
+
     size = 10;
     alive = true;
-    
   }
 }
