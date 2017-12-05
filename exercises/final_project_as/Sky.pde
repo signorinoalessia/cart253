@@ -66,7 +66,8 @@ class Sky {
       stroke(interA);
       line(0, i, 1920, i);
     }
-    println("test:: "+timePassed);
+    //println("test:: "+timePassed);
+    
     // timer determined by current time minus the start time
     timePassed = millis()-startTime;
 

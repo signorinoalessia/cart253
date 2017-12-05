@@ -27,7 +27,7 @@ class Menu {
     text("Become a frog in a rice field and catch as many fireflies as you can before sunrise!", width/2, height/2);
     text("Use arrow left and right keys to move and webcam blue detection to jump.", width/2, (height/2)+25);
     text("Each eaten firefly will reveal a fun frog fact or a related childhood memory.", width/2, (height/2)+50);
-     textSize(23);
+    textSize(23);
     text("Press s to start", width/2, (height/2)+85);
   }
 }

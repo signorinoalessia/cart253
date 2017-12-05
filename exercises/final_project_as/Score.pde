@@ -58,6 +58,7 @@ class Score {
     }
     if (currentText != -1) {
       textSize(15);
+      fill(255);
       textAlign(CENTER);
       text(texts[currentText], x, y+ellipseSize);
     }

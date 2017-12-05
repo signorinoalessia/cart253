@@ -58,11 +58,13 @@ class Firefly {
     tx += 0.01;
     ty += 0.01;
     theta += 0.05;
-    
+
     // fireflies opacity decreases over time
     fill(fill, alpha);
     ellipse(x, y, size + growth, size + growth);
-    //if (sky.currentR1 == ;
+    if (sky.interval >= 1) {
+      alpha--;
+    }
   }
 
   void reset() {
