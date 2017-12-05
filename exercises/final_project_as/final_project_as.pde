@@ -1,6 +1,5 @@
-/* Things to fix: (2) score calls text string (2)add firefly orbs around frog instead
-
- Things to add aesthetically: add cricket sounds + eaten sound, change sky a bit more pastel*/
+/* Things to fix: fireflies' opacity decreases over time with sky (1) AND fix crack sound(2);
+ Things to add aesthetically: change sky a bit more pastel*/
 
 //A Frog in the Rice Field
 //By: Alessia Signorino
@@ -8,7 +7,7 @@
 // Become a frog in a rice field and catch as many fireflies as you can before sunrise!
 // You can move on x axis with mouse and you can jump with webcam when the colour blue is detected;
 // The fireflies breathe and move organically (looks as if it it moves closer and further);
-// Your score is tracked and shown as lit orbs (you did eat fireflies after all) *****
+// Your score is tracked and shown as lit orbs (you did eat fireflies after all); ***
 // Stream of consciousness will display fun frog facts and childhood memories as text strings;
 // The background changes gradually from night to sunrise, making the fireflies harder to see!!!
 
@@ -16,15 +15,22 @@
 import processing.video.*;
 Capture video;
 
+//Import sound library
+import processing.sound.*;
+
+SoundFile crickets;
+//Soundfile crack;
+
 int x;
 int y;
 int frogInset = 20;
 
 // Global variables for firefly, frog, score and sky
-Firefly[] fireflies = new Firefly[30];
+Firefly[] fireflies = new Firefly[12];
 Frog frog;
 Sky sky;
 Score score;
+boolean gameOver =false;
 
 //Background
 PImage imagePlants;
@@ -36,6 +42,11 @@ void setup() {
   //video capture initialized
   video = new Capture(this, 320, 240);
   video.start();
+  
+  crickets = new SoundFile(this, "crickets.wav");
+  crickets.play();
+  
+  //crack = new SoundFile(this, "crack.file";
 
   //Background image for plants
   imagePlants = loadImage("ricefield.png");
@@ -60,7 +71,8 @@ void setup() {
 
 void draw() {
   //background(0);
-
+if(gameOver ==false)
+{
   // Frog RGB Input
   frog.frogInput();
   
@@ -90,11 +102,18 @@ void draw() {
   
   image(video,0,0,320,240);
 }
+//gameOver
+else
+{
+  score.playAgain();
+}
+}
+
 
 //Keyboard controls
-void mousePressed() {
-  score.addPoint();
-}
+//void mousePressed() {
+//  score.addPoint();
+//}
 
 void keyPressed() {
   frog.keyPressed();

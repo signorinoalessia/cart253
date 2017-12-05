@@ -95,8 +95,6 @@ class Frog {
     image(video, 0, 0);
     ellipse(bluestX, bluestY, 10, 10);
 
-    println(record);
-    println(isJumping);
     if (isJumping ==true)
     {
       vy+=1;
@@ -105,17 +103,14 @@ class Frog {
         vy=0;
         isJumping =false;
       }
-    } else if (record<120) {
-      println("trigger");
+    } else if (record<200) {
       tongueFrames = 1;
       if (isJumping ==false)
       {
-        println("jump");
-        vy =-17;
+        vy =-12;
         isJumping =true;
       }
     } else {
-      println("no trigger");
     }
 
     y+=vy;
@@ -135,6 +130,9 @@ class Frog {
       if (insideTongueLeft && insideTongueRight && insideTongueTop && insideTongueBottom) {
         //firefly dies
         firefly.alive = false;
+        //crack.play();
+        score.addPoint();
+        return;
       }
     }
   }
