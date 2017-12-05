@@ -1,4 +1,4 @@
-/* Things to fix: fireflies' opacity decreases over time with sky (1) AND fix crack sound(2);
+/* Things to fix: fireflies' opacity decreases over time with sky (1)
  Things to add aesthetically: change sky a bit more pastel*/
 
 //A Frog in the Rice Field
@@ -7,7 +7,7 @@
 // Become a frog in a rice field and catch as many fireflies as you can before sunrise!
 // You can move on x axis with mouse and you can jump with webcam when the colour blue is detected;
 // The fireflies breathe and move organically (looks as if it it moves closer and further);
-// Your score is tracked and shown as lit orbs (you did eat fireflies after all); ***
+// Your score is tracked and shown as lit orbs (you did eat fireflies after all);
 // Stream of consciousness will display fun frog facts and childhood memories as text strings;
 // The background changes gradually from night to sunrise, making the fireflies harder to see!!!
 
@@ -19,7 +19,7 @@ Capture video;
 import processing.sound.*;
 
 SoundFile crickets;
-//Soundfile crack;
+SoundFile crack;
 
 int x;
 int y;
@@ -43,10 +43,11 @@ void setup() {
   video = new Capture(this, 320, 240);
   video.start();
   
+  //sound of crickets initliazed and played in a loop
   crickets = new SoundFile(this, "crickets.wav");
-  crickets.play();
+  crickets.loop();
   
-  //crack = new SoundFile(this, "crack.file";
+  crack = new SoundFile(this, "crack.wav");
 
   //Background image for plants
   imagePlants = loadImage("ricefield.png");
