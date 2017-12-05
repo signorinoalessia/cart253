@@ -130,7 +130,7 @@ class Frog {
       if (insideTongueLeft && insideTongueRight && insideTongueTop && insideTongueBottom) {
         //firefly dies
         firefly.alive = false;
-        crack.play(1,1,70);
+        crack.play(1,1,20);
         score.addPoint();
         return;
       }
