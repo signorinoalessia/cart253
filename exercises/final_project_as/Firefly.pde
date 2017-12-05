@@ -16,6 +16,7 @@ class Firefly {
   float x;
   float y;
   color fill = color(255);
+  int alpha = 255;
 
   //alive
   boolean alive = true;
@@ -57,9 +58,11 @@ class Firefly {
     tx += 0.01;
     ty += 0.01;
     theta += 0.05;
-
-    fill(fill);
+    
+    // fireflies opacity decreases over time
+    fill(fill, alpha);
     ellipse(x, y, size + growth, size + growth);
+    //if (sky.currentR1 == ;
   }
 
   void reset() {

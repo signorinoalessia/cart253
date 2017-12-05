@@ -17,15 +17,17 @@ class Menu {
     y = _y;
     imageMenu = loadImage(_imageMenu);
   }
-  /////////////// Methods //////////////
+  //////////////// Methods ///////////////
   void display() {
     imageMode(CENTER);
     image(imageMenu, x, y);
     
-    textMode(CENTER);
-    textSize(25);
+    textAlign(CENTER);
+    textSize(15);
     text("Become a frog in a rice field and catch as many fireflies as you can before sunrise!", width/2, height/2);
-    text("You can move on x axis with mouse and you can jump with webcam when the colour blue is detected", width/2, (height/2)+55);
-    text("Press z to start", width/2, (height/2)+105);
+    text("Use arrow left and right keys to move and webcam blue detection to jump.", width/2, (height/2)+25);
+    text("Each eaten firefly will reveal a fun frog fact or a related childhood memory.", width/2, (height/2)+50);
+     textSize(23);
+    text("Press s to start", width/2, (height/2)+85);
   }
 }

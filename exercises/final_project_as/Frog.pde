@@ -130,7 +130,9 @@ class Frog {
       if (insideTongueLeft && insideTongueRight && insideTongueTop && insideTongueBottom) {
         //firefly dies
         firefly.alive = false;
+        // sound fx of crunched firefly
         crack.play(1,1,20);
+        // point is displayed and new string text appears
         score.addPoint();
         return;
       }
