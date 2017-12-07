@@ -63,7 +63,7 @@ void setup() {
   ///ADD FONT 
 
   //Display start menu
-  menu = new Menu(0, 0, "ricefield.png");
+  menu = new Menu(width/2, height/2, "menu.png");
 
   // Setup array for fireflies
   for (int i=0; i < fireflies.length; i++) {
